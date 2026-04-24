@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HomeoClinic Online | Specialist Homeopathic Doctor in Pakistan</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--gd:#1a3d2b;--gm:#2d6a4f;--gl:#40916c;--gs:#74c69d;--gp:#d8f3dc;--gold:#c9a84c;--goldl:#f0d080;--cream:#faf8f3;--white:#fff;--td:#1a1a1a;--tm:#444;--tl:#777;--sh:0 4px 30px rgba(26,61,43,.10);--shl:0 12px 50px rgba(26,61,43,.15);--r:14px;--tr:.3s cubic-bezier(.4,0,.2,1)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--td);line-height:1.7;overflow-x:hidden}
+.page{display:none}.page.active{display:block}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border-bottom:1px solid rgba(45,106,79,.12);padding:0 5%;display:flex;align-items:center;justify-content:space-between;height:68px;transition:box-shadow var(--tr)}
+nav.scrolled{box-shadow:var(--sh)}
+.nav-logo{display:flex;align-items:center;gap:10px;cursor:pointer;text-decoration:none}
+.nav-logo-img{width:42px;height:42px;border-radius:50%;object-fit:cover;border:2px solid var(--gm);box-shadow:0 2px 10px rgba(45,106,79,.25)}
+.nav-logo-text .brand{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;color:var(--gd);letter-spacing:.5px;line-height:1.1}
+.nav-logo-text .sub{font-size:9px;color:var(--gl);letter-spacing:2px;text-transform:uppercase;font-weight:500}
+.nav-links{display:flex;align-items:center;gap:6px}
+.nav-links a{font-size:14px;font-weight:500;color:var(--tm);text-decoration:none;padding:6px 12px;border-radius:8px;transition:var(--tr);cursor:pointer}
+.nav-links a:hover,.nav-links a.active{color:var(--gm);background:var(--gp)}
+.nav-right{display:flex;align-items:center;gap:12px}
+.lang-select{font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;border:1px solid rgba(45,106,79,.25);border-radius:8px;padding:5px 10px;color:var(--gd);background:var(--white);cursor:pointer;outline:none}
+.btn-cta{background:var(--gm);color:white;border:none;padding:9px 20px;border-radius:25px;font-size:13px;font-weight:600;cursor:pointer;transition:var(--tr);text-decoration:none;letter-spacing:.3px}
+.btn-cta:hover{background:var(--gd);transform:translateY(-1px);box-shadow:0 6px 20px rgba(45,106,79,.35)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px}
+.hamburger span{display:block;width:22px;height:2px;background:var(--gd);border-radius:2px;transition:var(--tr)}
+.mobile-menu{position:fixed;top:68px;left:0;right:0;background:white;box-shadow:var(--shl);padding:20px 5%;display:flex;flex-direction:column;gap:4px;transform:translateY(-20px);opacity:0;pointer-events:none;transition:var(--tr);z-index:999}
+.mobile-menu.open{transform:translateY(0);opacity:1;pointer-events:all}
+.mobile-menu a{padding:12px;font-size:15px;color:var(--td);text-decoration:none;border-radius:8px;cursor:pointer}
+.mobile-menu a:hover{background:var(--gp);color:var(--gm)}
+
+/* BUTTONS */
+.btn-primary{background:var(--gold);color:var(--gd);padding:14px 32px;border-radius:30px;border:none;font-size:15px;font-weight:700;cursor:pointer;transition:var(--tr);text-decoration:none;box-shadow:0 6px 24px rgba(201,168,76,.4)}
+.btn-primary:hover{background:var(--goldl);transform:translateY(-2px);box-shadow:0 10px 30px rgba(201,168,76,.5)}
+.btn-outline{background:transparent;color:white;padding:14px 32px;border-radius:30px;border:1.5px solid rgba(255,255,255,.4);font-size:15px;font-weight:500;cursor:pointer;transition:var(--tr);text-decoration:none}
+.btn-outline:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.7)}
+
+/* HERO */
+.hero{min-height:100vh;background:linear-gradient(135deg,var(--gd) 0%,var(--gm) 50%,#1b4332 100%);position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:100px 5% 60px}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 20% 50%,rgba(201,168,76,.12) 0%,transparent 60%),radial-gradient(ellipse at 80% 20%,rgba(116,198,157,.15) 0%,transparent 50%)}
+.hero-pattern{position:absolute;inset:0;opacity:.04;background-image:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")}
+.hero-content{position:relative;z-index:1;text-align:center;max-width:800px}
+.hero-logo-circle{width:90px;height:90px;border-radius:50%;border:3px solid var(--gold);overflow:hidden;margin:0 auto 24px;box-shadow:0 0 0 6px rgba(201,168,76,.2);animation:fadeInDown .8s ease both}
+.hero-logo-circle img{width:100%;height:100%;object-fit:cover}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.4);color:var(--goldl);padding:6px 16px;border-radius:20px;font-size:12px;font-weight:500;letter-spacing:1px;text-transform:uppercase;margin-bottom:28px;animation:fadeInDown .8s ease .1s both}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(42px,7vw,80px);font-weight:700;color:white;line-height:1.1;margin-bottom:16px;animation:fadeInUp .9s ease .1s both}
+.hero h1 em{color:var(--goldl);font-style:italic}
+.hero h2{font-family:'Cormorant Garamond',serif;font-size:clamp(20px,3vw,28px);font-weight:400;color:var(--gs);margin-bottom:20px;font-style:italic;animation:fadeInUp .9s ease .2s both}
+.hero p{font-size:15px;color:rgba(255,255,255,.75);max-width:600px;margin:0 auto 36px;line-height:1.8;animation:fadeInUp .9s ease .3s both}
+.hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;animation:fadeInUp .9s ease .4s both}
+.hero-scroll{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:6px;color:rgba(255,255,255,.5);font-size:11px;letter-spacing:2px;text-transform:uppercase;animation:bounce 2s infinite}
+
+/* STATS */
+.stats-bar{background:white;box-shadow:var(--shl);padding:32px 5%;margin:0 5%;border-radius:var(--r);transform:translateY(-50%);position:relative;z-index:10;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.stat-item{text-align:center;padding:10px}
+.stat-num{font-family:'Cormorant Garamond',serif;font-size:48px;font-weight:700;color:var(--gm);line-height:1;display:flex;align-items:center;justify-content:center;gap:2px}
+.stat-num sup{font-size:28px;color:var(--gold)}
+.stat-label{font-size:13px;color:var(--tl);margin-top:4px;font-weight:500}
+
+/* SECTIONS */
+section{padding:80px 5%}
+.section-tag{display:inline-block;background:var(--gp);color:var(--gm);padding:5px 14px;border-radius:20px;font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:14px}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(30px,4vw,44px);font-weight:700;color:var(--gd);line-height:1.2;margin-bottom:16px}
+.section-sub{font-size:15px;color:var(--tl);max-width:600px;line-height:1.8}
+
+/* ABOUT */
+.about-section{background:white}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.about-visual{background:linear-gradient(135deg,var(--gp),var(--gs));border-radius:var(--r);padding:40px;text-align:center;position:relative;overflow:hidden}
+.about-visual .big-logo{width:110px;height:110px;border-radius:50%;border:4px solid var(--gd);overflow:hidden;margin:0 auto 20px;box-shadow:0 8px 30px rgba(26,61,43,.25)}
+.about-visual .big-logo img{width:100%;height:100%;object-fit:cover}
+.about-badge-list{display:flex;flex-direction:column;gap:12px;margin-top:16px}
+.about-badge-item{background:white;border-radius:12px;padding:12px 16px;display:flex;align-items:center;gap:12px;box-shadow:var(--sh);text-align:left}
+.about-badge-icon{font-size:22px;flex-shrink:0}
+.about-badge-item strong{display:block;font-size:13px;color:var(--gd);font-weight:600}
+.about-badge-item span{font-size:12px;color:var(--tl)}
+.about-text p{margin-bottom:16px;font-size:15px;color:var(--tm);line-height:1.85}
+.about-text strong{color:var(--gm)}
+.countries-badge{display:inline-flex;align-items:center;gap:8px;background:var(--gp);border-radius:10px;padding:10px 16px;font-size:13px;font-weight:600;color:var(--gd);margin-top:8px}
+
+/* VIDEO SECTION */
+.video-section{background:var(--gd);position:relative;overflow:hidden;padding:80px 5%}
+.video-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(201,168,76,.08) 0%,transparent 60%)}
+.video-section .section-tag{background:rgba(201,168,76,.15);color:var(--goldl)}
+.video-section .section-title{color:white}
+.video-section .section-sub{color:rgba(255,255,255,.65)}
+.video-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:40px;position:relative;z-index:1}
+.video-card{border-radius:var(--r);overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,.3)}
+.video-embed{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;background:#000}
+.video-embed iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none}
+.video-placeholder{position:relative;padding-bottom:56.25%;height:0;background:linear-gradient(135deg,var(--gm),var(--gd));display:flex;align-items:center;justify-content:center;cursor:pointer;overflow:hidden}
+.video-placeholder-inner{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px}
+.play-btn{width:60px;height:60px;background:rgba(255,255,255,.15);border:2px solid rgba(255,255,255,.4);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;transition:var(--tr)}
+.video-placeholder:hover .play-btn{background:var(--gold);border-color:var(--gold)}
+.video-caption{background:rgba(0,0,0,.6);padding:12px 16px;backdrop-filter:blur(8px)}
+.video-caption h4{color:white;font-size:14px;font-weight:600;margin-bottom:2px}
+.video-caption p{color:rgba(255,255,255,.65);font-size:12px}
+.video-info-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:var(--r);padding:28px;position:relative;z-index:1}
+.video-info-card h3{font-family:'Cormorant Garamond',serif;font-size:26px;color:var(--goldl);margin-bottom:12px;font-weight:700}
+.video-info-card p{color:rgba(255,255,255,.75);font-size:14px;line-height:1.8;margin-bottom:16px}
+.video-steps{display:flex;flex-direction:column;gap:10px}
+.vstep{display:flex;align-items:flex-start;gap:12px}
+.vstep-num{width:26px;height:26px;border-radius:50%;background:var(--gold);color:var(--gd);font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.vstep p{color:rgba(255,255,255,.8);font-size:13px;line-height:1.5}
+
+/* SPECIALITIES */
+.spec-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px}
+.spec-card{background:white;border-radius:var(--r);padding:32px 24px;border:1px solid rgba(45,106,79,.08);transition:var(--tr);position:relative;overflow:hidden}
+.spec-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gl),var(--gs));transform:scaleX(0);transform-origin:left;transition:var(--tr)}
+.spec-card:hover{transform:translateY(-4px);box-shadow:var(--shl)}.spec-card:hover::before{transform:scaleX(1)}
+.spec-icon{font-size:36px;margin-bottom:14px}
+.spec-card h3{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;color:var(--gd);margin-bottom:10px}
+.spec-card p{font-size:13px;color:var(--tl);line-height:1.75}
+
+/* PESHAWAR */
+.peshawar-section{background:var(--gd);position:relative;overflow:hidden}
+.peshawar-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 70% 50%,rgba(201,168,76,.08) 0%,transparent 60%)}
+.peshawar-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;position:relative;z-index:1}
+.peshawar-section .section-tag{background:rgba(201,168,76,.15);color:var(--goldl)}
+.peshawar-section .section-title{color:white}
+.peshawar-section .section-sub{color:rgba(255,255,255,.65)}
+.peshawar-list{list-style:none;margin:24px 0;display:flex;flex-direction:column;gap:12px}
+.peshawar-list li{display:flex;align-items:center;gap:12px;color:rgba(255,255,255,.85);font-size:14px}
+.peshawar-list li::before{content:'✓';background:var(--gold);color:var(--gd);width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0}
+.peshawar-stats{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.p-stat{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:var(--r);padding:24px;text-align:center}
+.p-stat .num{font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:700;color:var(--goldl);line-height:1}
+.p-stat .lbl{font-size:13px;color:rgba(255,255,255,.6);margin-top:6px}
+
+/* TESTIMONIALS */
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px}
+.testi-card{background:white;border-radius:var(--r);padding:28px;border:1px solid rgba(45,106,79,.08);transition:var(--tr)}
+.testi-card:hover{transform:translateY(-3px);box-shadow:var(--shl)}
+.testi-stars{color:#f59e0b;font-size:14px;margin-bottom:14px}
+.testi-text{font-size:14px;color:var(--tm);line-height:1.8;font-style:italic;margin-bottom:18px}
+.testi-author{display:flex;align-items:center;gap:12px}
+.testi-avatar{width:40px;height:40px;border-radius:50%;background:var(--gp);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.testi-name{font-size:14px;font-weight:600;color:var(--gd)}
+.testi-loc{font-size:12px;color:var(--tl)}
+
+/* FAQ */
+.faq-container{max-width:750px;margin:40px auto 0}
+.faq-item{border-bottom:1px solid rgba(45,106,79,.1);overflow:hidden}
+.faq-q{display:flex;justify-content:space-between;align-items:center;padding:20px 0;cursor:pointer;font-size:15px;font-weight:600;color:var(--gd);transition:var(--tr)}
+.faq-q:hover{color:var(--gm)}
+.faq-icon{font-size:18px;color:var(--gm);transition:var(--tr);flex-shrink:0;margin-left:14px}
+.faq-a{font-size:14px;color:var(--tm);line-height:1.8;max-height:0;overflow:hidden;transition:max-height .4s ease,padding .3s ease}
+.faq-a.open{max-height:200px;padding-bottom:18px}
+.faq-item.open .faq-icon{transform:rotate(45deg)}
+
+/* CONSULT PAGE */
+.consult-hero{background:linear-gradient(135deg,var(--gd),var(--gm));padding:120px 5% 70px;text-align:center;color:white}
+.consult-hero h1{font-family:'Cormorant Garamond',serif;font-size:48px;font-weight:700;margin-bottom:10px}
+.consult-hero p{color:rgba(255,255,255,.75);max-width:550px;margin:0 auto 24px}
+.trust-badges{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.trust-badge{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.9);padding:7px 16px;border-radius:20px;font-size:12px;font-weight:500}
+.consult-body{padding:60px 5%}
+.consult-layout{display:grid;grid-template-columns:1fr 360px;gap:40px;align-items:start}
+.steps-bar{background:white;border-radius:var(--r);padding:28px;box-shadow:var(--sh);margin-bottom:32px}
+.steps-bar h3{font-size:14px;font-weight:700;color:var(--gd);margin-bottom:20px;text-transform:uppercase;letter-spacing:.5px}
+.steps-list{display:flex;flex-direction:column;gap:14px}
+.step-item{display:flex;align-items:flex-start;gap:12px}
+.step-num{width:28px;height:28px;border-radius:50%;background:var(--gm);color:white;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.step-item p{font-size:13px;color:var(--tm);line-height:1.5;padding-top:3px}
+.payment-box{background:white;border-radius:var(--r);padding:28px;box-shadow:var(--sh)}
+.payment-box h3{font-size:14px;font-weight:700;color:var(--gd);margin-bottom:20px;text-transform:uppercase;letter-spacing:.5px}
+.fee-badge{background:var(--gm);color:white;padding:10px 16px;border-radius:10px;text-align:center;margin-bottom:14px}
+.fee-badge .amount{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:700}
+.fee-badge .lbl{font-size:11px;opacity:.8}
+.discount-note{background:#fff3cd;border:1px solid #ffc107;border-radius:8px;padding:10px 14px;font-size:12px;color:#856404;text-align:center;margin-bottom:18px}
+.payment-method{background:var(--gp);border-radius:10px;padding:14px;margin-bottom:10px}
+.payment-method strong{font-size:12px;color:var(--gd);display:block;margin-bottom:6px}
+.payment-method span{font-size:13px;color:var(--tm)}
+.form-wrapper{background:white;border-radius:var(--r);padding:36px;box-shadow:var(--sh)}
+.form-section{margin-bottom:36px}
+.form-section-title{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:var(--gd);border-left:4px solid var(--gl);padding-left:14px;margin-bottom:20px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.form-group{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
+.form-group.full{grid-column:1/-1}
+.form-group label{font-size:13px;font-weight:600;color:var(--td)}
+.form-group label span{color:#e53e3e}
+.form-group input,.form-group select,.form-group textarea{border:1.5px solid rgba(45,106,79,.2);border-radius:10px;padding:11px 14px;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--td);background:var(--cream);transition:var(--tr);outline:none}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--gm);background:white;box-shadow:0 0 0 3px rgba(45,106,79,.08)}
+.form-group textarea{resize:vertical;min-height:90px}
+.checkbox-group{display:flex;flex-wrap:wrap;gap:8px}
+.checkbox-item{display:flex;align-items:center;gap:6px}
+.checkbox-item input[type=checkbox]{accent-color:var(--gm);width:15px;height:15px;cursor:pointer}
+.checkbox-item label{font-size:13px;color:var(--tm);cursor:pointer}
+.btn-submit{background:var(--gm);color:white;border:none;padding:16px 40px;border-radius:30px;font-size:16px;font-weight:700;cursor:pointer;transition:var(--tr);width:100%;margin-top:10px;box-shadow:0 6px 20px rgba(45,106,79,.35);letter-spacing:.3px}
+.btn-submit:hover{background:var(--gd);transform:translateY(-2px);box-shadow:0 10px 30px rgba(45,106,79,.45)}
+.whatsapp-link{display:flex;align-items:center;justify-content:center;gap:10px;background:#25d366;color:white;border-radius:12px;padding:14px;font-size:14px;font-weight:600;text-decoration:none;margin-top:14px;transition:var(--tr)}
+.whatsapp-link:hover{background:#1da851;transform:translateY(-2px)}
+
+/* SUCCESS TOAST */
+.toast{position:fixed;top:90px;right:24px;z-index:2000;background:var(--gm);color:white;padding:16px 24px;border-radius:12px;box-shadow:var(--shl);font-size:14px;font-weight:600;transform:translateX(120%);transition:transform .4s cubic-bezier(.4,0,.2,1);max-width:340px}
+.toast.show{transform:translateX(0)}
+.toast .toast-icon{font-size:20px;margin-right:8px}
+
+/* DOCTOR PAGE */
+.doctor-hero{background:linear-gradient(135deg,var(--gd),var(--gm));padding:120px 5% 80px;text-align:center;color:white}
+.doctor-avatar{width:140px;height:140px;border-radius:50%;border:4px solid var(--gold);overflow:hidden;margin:0 auto 24px;box-shadow:0 0 0 8px rgba(201,168,76,.2)}
+.doctor-avatar img{width:100%;height:100%;object-fit:cover}
+.doctor-hero h1{font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:700;margin-bottom:8px}
+.doctor-hero .title{color:var(--goldl);font-size:16px;margin-bottom:20px}
+.doctor-hero .desc{max-width:600px;margin:0 auto;color:rgba(255,255,255,.75);line-height:1.8}
+.doctor-body{padding:70px 5%}
+.doctor-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.info-card{background:white;border-radius:var(--r);padding:28px;box-shadow:var(--sh)}
+.info-card h3{font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--gd);margin-bottom:16px;border-bottom:2px solid var(--gp);padding-bottom:10px}
+.info-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.info-list li{font-size:14px;color:var(--tm);display:flex;gap:10px;align-items:flex-start}
+.info-list li::before{content:'🌿';flex-shrink:0}
+.quote-card{background:var(--gd);color:white;border-radius:var(--r);padding:36px;text-align:center;box-shadow:var(--shl);margin-top:40px}
+.quote-card blockquote{font-family:'Cormorant Garamond',serif;font-size:26px;font-style:italic;color:var(--goldl);line-height:1.5;margin-bottom:16px}
+.quote-card cite{font-size:13px;color:rgba(255,255,255,.6)}
+
+/* SPEC PAGE */
+.spec-page-hero{background:linear-gradient(135deg,var(--gd),var(--gm));padding:120px 5% 80px;text-align:center;color:white}
+.spec-page-hero h1{font-family:'Cormorant Garamond',serif;font-size:50px;font-weight:700;margin-bottom:12px}
+.spec-page-hero p{color:rgba(255,255,255,.75);max-width:550px;margin:0 auto}
+.spec-page-body{padding:70px 5%}
+.spec-detail-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.spec-detail-card{background:white;border-radius:var(--r);padding:32px;border-left:4px solid var(--gl);box-shadow:var(--sh);transition:var(--tr)}
+.spec-detail-card:hover{transform:translateY(-3px);box-shadow:var(--shl);border-left-color:var(--gold)}
+.spec-detail-card .icon{font-size:40px;margin-bottom:14px}
+.spec-detail-card h3{font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--gd);margin-bottom:10px;font-weight:700}
+.spec-detail-card p{font-size:13.5px;color:var(--tm);line-height:1.8;margin-bottom:14px}
+.spec-tag-list{display:flex;flex-wrap:wrap;gap:6px}
+.spec-tag{background:var(--gp);color:var(--gm);padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600}
+
+/* CONTACT */
+.contact-hero{background:linear-gradient(135deg,var(--gd),var(--gm));padding:120px 5% 80px;text-align:center;color:white}
+.contact-hero h1{font-family:'Cormorant Garamond',serif;font-size:50px;font-weight:700;margin-bottom:12px}
+.contact-hero p{color:rgba(255,255,255,.75);max-width:500px;margin:0 auto}
+.contact-body{padding:70px 5%}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.contact-card{background:white;border-radius:var(--r);padding:32px;box-shadow:var(--sh)}
+.contact-card h3{font-family:'Cormorant Garamond',serif;font-size:24px;color:var(--gd);margin-bottom:20px}
+.contact-item{display:flex;align-items:flex-start;gap:16px;margin-bottom:22px}
+.contact-icon{width:44px;height:44px;border-radius:12px;background:var(--gp);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.contact-item strong{display:block;font-size:13px;color:var(--tl);font-weight:500;margin-bottom:2px;text-transform:uppercase;letter-spacing:.5px}
+.contact-item a{color:var(--gm);text-decoration:none;font-size:15px;font-weight:600}
+.contact-item span{color:var(--td);font-size:15px}
+.languages-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.lang-badge{background:var(--gp);color:var(--gm);padding:5px 14px;border-radius:20px;font-size:12px;font-weight:600}
+.countries-card{background:var(--gd);color:white;border-radius:var(--r);padding:32px;box-shadow:var(--shl)}
+.countries-card h3{font-family:'Cormorant Garamond',serif;font-size:24px;color:var(--goldl);margin-bottom:16px}
+.countries-card p{color:rgba(255,255,255,.7);font-size:14px;margin-bottom:20px}
+.countries-num{font-family:'Cormorant Garamond',serif;font-size:80px;font-weight:700;color:var(--goldl);line-height:1}
+
+/* FOOTER */
+footer{background:var(--gd);color:rgba(255,255,255,.7)}
+.footer-body{padding:60px 5% 40px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px}
+.footer-brand p{font-size:13px;line-height:1.8;margin:16px 0}
+footer h4{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:white;margin-bottom:16px}
+footer ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+footer ul li a{color:rgba(255,255,255,.65);text-decoration:none;font-size:13px;transition:var(--tr);cursor:pointer}
+footer ul li a:hover{color:var(--goldl)}
+footer ul li{font-size:13px;color:rgba(255,255,255,.65)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.1);padding:20px 5%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;font-size:12px}
+.admin-link{color:rgba(255,255,255,.25);text-decoration:none;font-size:11px;transition:var(--tr)}
+.admin-link:hover{color:rgba(255,255,255,.6)}
+
+/* WHATSAPP FLOAT */
+.wa-float{position:fixed;bottom:28px;right:28px;z-index:999;background:#25d366;color:white;border-radius:50%;width:60px;height:60px;display:flex;align-items:center;justify-content:center;font-size:28px;box-shadow:0 6px 20px rgba(37,211,102,.5);cursor:pointer;text-decoration:none;transition:var(--tr);animation:pulse 2.5s infinite}
+.wa-float:hover{transform:scale(1.1);box-shadow:0 10px 30px rgba(37,211,102,.6);animation:none}
+
+/* ANIMATIONS */
+@keyframes fadeInDown{from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-10px)}}
+@keyframes pulse{0%,100%{box-shadow:0 6px 20px rgba(37,211,102,.5)}50%{box-shadow:0 6px 30px rgba(37,211,102,.8)}}
+.fade-in{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .nav-links,.nav-right .lang-select{display:none}
+  .hamburger{display:flex}
+  .stats-bar{grid-template-columns:1fr;transform:none;margin:0;border-radius:0}
+  .about-grid,.peshawar-grid,.doctor-grid,.contact-grid{grid-template-columns:1fr}
+  .spec-grid,.testi-grid,.video-grid{grid-template-columns:1fr 1fr}
+  .spec-detail-grid{grid-template-columns:1fr}
+  .consult-layout{grid-template-columns:1fr}
+  .form-grid{grid-template-columns:1fr}
+  .footer-body{grid-template-columns:1fr 1fr}
+}
+@media(max-width:600px){
+  .spec-grid,.testi-grid,.video-grid{grid-template-columns:1fr}
+  .footer-body{grid-template-columns:1fr}
+  .hero h1{font-size:36px}
+  .section-title{font-size:28px}
+}
+
+/* ─── INTRO VIDEO MODAL ─── */
+.intro-modal{position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:10000;display:flex;align-items:center;justify-content:center;padding:20px;animation:fadeInBg .4s ease}
+@keyframes fadeInBg{from{opacity:0}to{opacity:1}}
+.intro-modal-box{position:relative;width:100%;max-width:780px;border-radius:16px;overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,.6);animation:scaleIn .4s cubic-bezier(.34,1.56,.64,1) both}
+@keyframes scaleIn{from{opacity:0;transform:scale(.88)}to{opacity:1;transform:scale(1)}}
+.intro-modal-top{background:var(--gd);padding:18px 24px;display:flex;align-items:center;justify-content:space-between}
+.intro-modal-top h3{font-family:'Cormorant Garamond',serif;color:white;font-size:20px;font-weight:700}
+.intro-modal-top p{color:var(--gs);font-size:12px;margin-top:2px}
+.intro-close{background:rgba(255,255,255,.15);border:none;color:white;width:34px;height:34px;border-radius:50%;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:var(--tr);flex-shrink:0}
+.intro-close:hover{background:rgba(255,255,255,.3)}
+.intro-video-wrap{position:relative;padding-bottom:56.25%;height:0;background:#000}
+.intro-video-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none}
+.intro-modal-bottom{background:var(--gd);padding:16px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.intro-modal-bottom p{color:rgba(255,255,255,.75);font-size:13px}
+.intro-cta{background:var(--gold);color:var(--gd);border:none;padding:10px 24px;border-radius:20px;font-size:13px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;transition:var(--tr)}
+.intro-cta:hover{background:var(--goldl)}
+
+/* ─── HERO VIDEO BACKGROUND ─── */
+.hero-video-bg{position:absolute;inset:0;overflow:hidden;z-index:0}
+.hero-video-bg video{width:100%;height:100%;object-fit:cover;opacity:.18}
+.hero-video-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(10,61,43,.92),rgba(45,106,79,.85),rgba(27,67,50,.92))}
+
+</style>
+</head>
+<body>
+
+
+<!-- ─── INTRO VIDEO MODAL ─── -->
+<div class="intro-modal" id="intro-modal">
+  <div class="intro-modal-box">
+    <div class="intro-modal-top">
+      <div>
+        <h3>Welcome to HomeoClinic Online</h3>
+        <p>Watch how we can help you heal naturally — Prof. Dr. Tahseen</p>
+      </div>
+      <button class="intro-close" onclick="closeIntro()" title="Close">×</button>
+    </div>
+    <!-- Replace YOUR_VIDEO_ID with your actual YouTube video ID -->
+    <div class="intro-video-wrap">
+      <iframe id="intro-iframe"
+        src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=1&rel=0&modestbranding=1"
+        allow="autoplay; encrypted-media; fullscreen"
+        allowfullscreen
+        title="HomeoClinic Introduction"></iframe>
+    </div>
+    <div class="intro-modal-bottom">
+      <p>🌿 Classical Homeopathy — Permanent results from the root</p>
+      <button class="intro-cta" onclick="closeIntro();showPage('consultation')">Start Consultation →</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <a class="nav-logo" onclick="showPage('home')">
+    <img class="nav-logo-img" id="nav-logo-img" src="" alt="HomeoClinic">
+    <div class="nav-logo-text">
+      <div class="brand">HomeoClinic</div>
+      <div class="sub">Online Clinic</div>
+    </div>
+  </a>
+  <div class="nav-links">
+    <a onclick="showPage('home')" class="active" id="nav-home">Home</a>
+    <a onclick="showPage('doctor')" id="nav-doctor">Doctor</a>
+    <a onclick="showPage('specialities')" id="nav-specialities">Specialities</a>
+    <a onclick="showPage('consultation')" id="nav-consultation">Consultation</a>
+    <a onclick="showPage('contact')" id="nav-contact">Contact</a>
+  </div>
+  <div class="nav-right">
+    <select class="lang-select"><option>English</option><option>اردو</option><option>پښتو</option><option>فارسی</option><option>العربية</option></select>
+    <button class="btn-cta" onclick="showPage('consultation')">Start Consultation</button>
+    <div class="hamburger" onclick="toggleMobile()"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a onclick="showPage('home');toggleMobile()">Home</a>
+  <a onclick="showPage('doctor');toggleMobile()">Doctor</a>
+  <a onclick="showPage('specialities');toggleMobile()">Specialities</a>
+  <a onclick="showPage('consultation');toggleMobile()">Consultation</a>
+  <a onclick="showPage('contact');toggleMobile()">Contact</a>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"><span class="toast-icon">✅</span><span id="toast-msg">Form submitted successfully!</span></div>
+
+<!-- ═══ HOME PAGE ═══ -->
+<div class="page active" id="page-home">
+<section class="hero">
+  <div class="hero-video-bg">
+    <!-- Replace with your own background video URL or YouTube embed -->
+    <video autoplay muted loop playsinline>
+      <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="hero-bg"></div><div class="hero-pattern"></div>
+  <div class="hero-content">
+    <div class="hero-logo-circle"><img id="hero-logo-img" src="" alt="HomeoClinic"></div>
+    <div class="hero-badge">🌿 Classical Kentian Homeopathy • Established Practice</div>
+    <h1>Homeopathic<br><em>Specialist Clinic</em></h1>
+    <h2>In Peshawar, Pakistan</h2>
+    <p>Specialist online homeopathic clinic providing treatment for gastric problems, skin & beauty concerns, women's health, male sexual issues, kidney stones, ENT disorders, and cancer supportive care across Pakistan.</p>
+    <div class="hero-btns">
+      <button class="btn-primary" onclick="showPage('consultation')">Start Consultation</button>
+      <button class="btn-outline" onclick="showPage('doctor')">Meet The Doctor</button>
+    </div>
+  </div>
+  <div class="hero-scroll"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>Scroll</div>
+</section>
+
+<div class="stats-bar">
+  <div class="stat-item"><div class="stat-num"><span id="stat1">15</span><sup>+</sup></div><div class="stat-label">Years Experience</div></div>
+  <div style="width:1px;background:var(--gp)"></div>
+  <div class="stat-item"><div class="stat-num"><span id="stat2">5000</span><sup>+</sup></div><div class="stat-label">Happy Patients</div></div>
+  <div style="width:1px;background:var(--gp)"></div>
+  <div class="stat-item"><div class="stat-num"><span id="stat3">24</span><sup>hr</sup></div><div class="stat-label">Response Time</div></div>
+</div>
+
+<!-- ABOUT -->
+<section class="about-section" style="padding-top:120px">
+  <div class="about-grid">
+    <div class="about-visual">
+      <div class="big-logo"><img id="about-logo-img" src="" alt="HomeoClinic"></div>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:700;color:var(--gd);margin-bottom:6px">Prof. Dr. Tahseen</div>
+      <div style="color:var(--gm);font-size:13px;font-weight:600;margin-bottom:20px">Homeopathic Consultant Specialist</div>
+      <div class="about-badge-list">
+        <div class="about-badge-item"><div class="about-badge-icon">🌍</div><div><strong>18 Countries</strong><span>Global patient reach</span></div></div>
+        <div class="about-badge-item"><div class="about-badge-icon">🏅</div><div><strong>Classical Kentian Protocol</strong><span>Single remedy approach</span></div></div>
+        <div class="about-badge-item"><div class="about-badge-icon">📱</div><div><strong>Urdu • Pashto • English</strong><span>Multilingual consultations</span></div></div>
+      </div>
+    </div>
+    <div class="about-text">
+      <div class="section-tag">About Our Clinic</div>
+      <h2 class="section-title">Best Natural Homeopathic Clinic in Peshawar</h2>
+      <p>HomeoClinic.Online is recognized as one of the <strong>top homeopathic clinics with a global presence in 18 countries</strong>, providing holistic treatment for chronic diseases.</p>
+      <p>We specialize in <strong>IBS, Ulcers, H. Pylori, Hepatitis, Hemorrhoids, Acne, Melasma, Hairfall, Burns, Leukorrhea, PCOS, Male Sexual Issues, Infertility, Kidney Stones, Prostatitis, Depression, and Anxiety.</strong></p>
+      <p>Patients from <strong>Hayatabad, Saddar, University Road, Dabgari Garden</strong> and all areas of Peshawar consult our clinic for permanent homeopathic treatment.</p>
+      <div class="countries-badge">🌐 Serving Pakistan & 18 Countries Worldwide</div>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEO SECTION -->
+<section class="video-section">
+  <div style="position:relative;z-index:1">
+    <div class="section-tag">See & Learn</div>
+    <h2 class="section-title">How HomeoClinic Works</h2>
+    <p class="section-sub">Watch how our classical homeopathic approach delivers lasting results for chronic conditions.</p>
+  </div>
+  <div class="video-grid">
+    <div class="video-card">
+      <!-- Replace the src with your actual YouTube embed URL -->
+      <div class="video-embed">
+        <iframe src="https://www.youtube.com/embed/?listType=search&list=homeopathy+treatment+online" allowfullscreen title="HomeoClinic Introduction"></iframe>
+      </div>
+      <div class="video-caption">
+        <h4>🎥 Our Clinic Introduction</h4>
+        <p>Replace this with your actual YouTube video URL</p>
+      </div>
+    </div>
+    <div class="video-card">
+      <div class="video-embed">
+        <iframe src="https://www.youtube.com/embed/?listType=search&list=classical+homeopathy+consultation" allowfullscreen title="Consultation Process"></iframe>
+      </div>
+      <div class="video-caption">
+        <h4>🎥 Patient Consultation Process</h4>
+        <p>Replace this with your actual YouTube video URL</p>
+      </div>
+    </div>
+  </div>
+  <div class="video-info-card" style="margin-top:24px">
+    <h3>💡 How to Add Your Videos</h3>
+    <p>To add your own YouTube videos, replace the <code style="background:rgba(255,255,255,.1);padding:2px 6px;border-radius:4px;color:var(--goldl)">iframe src</code> above with your YouTube video embed link (e.g. <code style="background:rgba(255,255,255,.1);padding:2px 6px;border-radius:4px;color:var(--goldl)">https://www.youtube.com/embed/YOUR_VIDEO_ID</code>).</p>
+    <div class="video-steps">
+      <div class="vstep"><div class="vstep-num">1</div><p>Go to YouTube → your video → Share → Embed</p></div>
+      <div class="vstep"><div class="vstep-num">2</div><p>Copy the embed link (looks like: youtube.com/embed/ABC123)</p></div>
+      <div class="vstep"><div class="vstep-num">3</div><p>Replace the src="" in this file with your link</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SPECIALITIES -->
+<section style="background:var(--cream)">
+  <div style="text-align:center">
+    <div class="section-tag">What We Treat</div>
+    <h2 class="section-title">Our Online Clinic Specializations</h2>
+    <p class="section-sub" style="margin:0 auto">We provide specific homeopathic remedies for chronic conditions with permanent results.</p>
+  </div>
+  <div class="spec-grid">
+    <div class="spec-card fade-in"><div class="spec-icon">🫃</div><h3>Gastric Disorders</h3><p>Proven remedies for IBS, Ulcers, H. Pylori, Hepatitis, Hemorrhoids and other digestive disorders available 24/7.</p></div>
+    <div class="spec-card fade-in"><div class="spec-icon">⚖️</div><h3>Hormonal Imbalances</h3><p>Proven remedies for Hormonal Imbalances, Thyroid disorders, and Endocrine issues available 24/7.</p></div>
+    <div class="spec-card fade-in"><div class="spec-icon">🌸</div><h3>Women's Health</h3><p>Proven remedies for PCOS, Leukorrhea, Uterine Fibroids, Infertility, and Menopause available 24/7.</p></div>
+    <div class="spec-card fade-in"><div class="spec-icon">✨</div><h3>Skin Problems</h3><p>Proven remedies for Acne, Melasma, Facial Hair, Eczema, Psoriasis, and Hairfall available 24/7.</p></div>
+    <div class="spec-card fade-in"><div class="spec-icon">🫘</div><h3>Kidney Stones</h3><p>Non-surgical homeopathic treatment for Kidney Stones with no recurrence available 24/7.</p></div>
+    <div class="spec-card fade-in"><div class="spec-icon">🔬</div><h3>Prostatitis</h3><p>Proven remedies for Prostatitis and male urinary disorders available 24/7.</p></div>
+  </div>
+</section>
+
+<!-- PESHAWAR -->
+<section class="peshawar-section">
+  <div class="peshawar-grid">
+    <div>
+      <div class="section-tag">Local & Nationwide</div>
+      <h2 class="section-title">Leading Clinic Serving Peshawar & KPK</h2>
+      <p class="section-sub">While we offer online consultations worldwide, HomeoClinic Online has a deep-rooted presence in Peshawar with Classical Kentian Homeopathy protocol.</p>
+      <ul class="peshawar-list">
+        <li>Specialized Kidney Stone Treatment in Peshawar</li>
+        <li>Top-Rated Homeo Skin Specialist for KPK Patients</li>
+        <li>Consultation in Urdu, Pashto, and English</li>
+        <li>Protocols customized for Peshawar lifestyle</li>
+        <li>Addressing local water hardness & seasonal allergies</li>
+      </ul>
+    </div>
+    <div class="peshawar-stats">
+      <div class="p-stat"><div class="num">98%</div><div class="lbl">Peshawar Success Rate</div></div>
+      <div class="p-stat"><div class="num">No.1</div><div class="lbl">Homeopath in KPK</div></div>
+      <div class="p-stat"><div class="num">18</div><div class="lbl">Countries Served</div></div>
+      <div class="p-stat"><div class="num">24h</div><div class="lbl">Response Time</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section style="background:var(--cream)">
+  <div style="text-align:center"><div class="section-tag">Patient Stories</div><h2 class="section-title">What Our Patients Say</h2><p class="section-sub" style="margin:0 auto">Real success stories from patients who found relief with our homeopathic remedies across Pakistan.</p></div>
+  <div class="testi-grid">
+    <div class="testi-card fade-in"><div class="testi-stars">★★★★★</div><p class="testi-text">"After years of stomach issues and multiple doctors, Prof. Dr. Tahseen's treatment finally gave me permanent relief from acidity and bloating. No more antacids!"</p><div class="testi-author"><div class="testi-avatar">👩</div><div><div class="testi-name">Ayesha R.</div><div class="testi-loc">Hayatabad, Peshawar</div></div></div></div>
+    <div class="testi-card fade-in"><div class="testi-stars">★★★★★</div><p class="testi-text">"Kidney stones passed without surgery. Just constitutional medicine. No recurrence in 2 years. Highly recommend!"</p><div class="testi-author"><div class="testi-avatar">👨</div><div><div class="testi-name">Muhammad Ali</div><div class="testi-loc">Dabgari Garden, Peshawar</div></div></div></div>
+    <div class="testi-card fade-in"><div class="testi-stars">★★★★★</div><p class="testi-text">"PCOS symptoms reduced dramatically — regular periods now, less hair fall and much better energy. Truly grateful for this natural approach."</p><div class="testi-author"><div class="testi-avatar">👩</div><div><div class="testi-name">Sana K.</div><div class="testi-loc">University Road, Peshawar</div></div></div></div>
+    <div class="testi-card fade-in"><div class="testi-stars">★★★★★</div><p class="testi-text">"Eczema cleared completely after 4 months — no steroids, no creams. My skin has never been this good."</p><div class="testi-author"><div class="testi-avatar">👩</div><div><div class="testi-name">Fatima Z.</div><div class="testi-loc">Rawalpindi</div></div></div></div>
+    <div class="testi-card fade-in"><div class="testi-stars">★★★★★</div><p class="testi-text">"Menopause was unbearable — hot flashes, mood swings. Treatment brought balance naturally. Feeling like myself again."</p><div class="testi-author"><div class="testi-avatar">👩</div><div><div class="testi-name">Zainab M.</div><div class="testi-loc">Multan</div></div></div></div>
+    <div class="testi-card fade-in"><div class="testi-stars">★★★★★</div><p class="testi-text">"Chronic migraine frequency dropped from 15+ days/month to almost zero. Life-changing."</p><div class="testi-author"><div class="testi-avatar">👨</div><div><div class="testi-name">Ahmed H.</div><div class="testi-loc">Faisalabad</div></div></div></div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section style="background:white">
+  <div style="text-align:center"><div class="section-tag">Common Questions</div><h2 class="section-title">Frequently Asked Questions</h2></div>
+  <div class="faq-container">
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Who is the best homeopathic kidney specialist in Peshawar?<span class="faq-icon">+</span></div><div class="faq-a">Prof. Dr. Tahseen at HomeoClinic Online is a leading specialist providing non-surgical treatment for kidney stones and renal issues for patients across Peshawar and Hayatabad.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Can I get a homeo skin specialist consultation in Peshawar online?<span class="faq-icon">+</span></div><div class="faq-a">Yes, we provide specialized digital dermatology consultations for Peshawar residents, treating acne, eczema, and psoriasis with natural remedies.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">How long does treatment take to show results?<span class="faq-icon">+</span></div><div class="faq-a">Results vary by condition. Acute conditions may respond within days, while chronic conditions typically show improvement within 4–8 weeks of constitutional treatment.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">How do I pay for consultation?<span class="faq-icon">+</span></div><div class="faq-a">Pakistan patients can pay via EasyPaisa or JazzCash (0300-5857458). International patients can transfer to Allied Bank (Acc: 0010008552040035).</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Do you offer follow-up consultations?<span class="faq-icon">+</span></div><div class="faq-a">Yes! Every consultation includes a free follow-up after 7 days to assess your response to the remedy and adjust treatment if needed.</div></div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section style="background:var(--gm);padding:60px 5%;text-align:center">
+  <div class="section-tag" style="background:rgba(255,255,255,.15);color:white">Begin Your Healing</div>
+  <h2 style="font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:700;color:white;margin:12px 0 16px">"The most natural way to heal – from the root."</h2>
+  <p style="color:rgba(255,255,255,.8);margin-bottom:8px;font-style:italic">— Prof. Dr. Tahseen, Homeopathic Consultant</p>
+  <p style="color:rgba(255,255,255,.7);margin-bottom:30px;font-size:14px">Classical Homeopathy • Digital Care • Lasting Results</p>
+  <button class="btn-primary" onclick="showPage('consultation')">Start Your Consultation Today</button>
+</section>
+
+<footer>
+  <div class="footer-body">
+    <div class="footer-brand">
+      <div class="nav-logo" onclick="showPage('home')" style="cursor:pointer">
+        <img class="nav-logo-img" id="footer-logo-img" src="" alt="HomeoClinic">
+        <div class="nav-logo-text"><div class="brand" style="color:white">HomeoClinic</div><div class="sub" style="color:var(--gs)">Online Clinic</div></div>
+      </div>
+      <p>Specialist online homeopathic clinic providing holistic treatment for chronic diseases across Pakistan and 18 countries worldwide.</p>
+      <div style="font-size:12px;color:var(--gs)">Classical Homeopathy • Digital Care • Lasting Results</div>
+    </div>
+    <div><h4>Quick Links</h4><ul><li><a onclick="showPage('doctor')">Meet Prof. Dr. Tahseen</a></li><li><a onclick="showPage('specialities')">Our Specialities</a></li><li><a onclick="showPage('consultation')">Book Consultation</a></li><li><a onclick="showPage('contact')">Contact Us</a></li></ul></div>
+    <div><h4>Contact</h4><ul><li><a href="https://wa.me/923005857458">+92 300 5857458</a></li><li><a href="mailto:homeocliniconlinee@gmail.com">homeocliniconlinee@gmail.com</a></li></ul><div style="margin-top:16px;font-size:13px"><div style="color:white;font-weight:600;margin-bottom:4px">Hours</div><div>Monday – Saturday<br>10:00 AM – 8:00 PM (PKT)</div></div></div>
+    <div><h4>Follow Us</h4><ul><li><a href="https://wa.me/923005857458">📱 WhatsApp</a></li><li><a href="#">📸 Instagram</a></li><li><a href="#">👍 Facebook</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <div>© 2026 HomeoClinic • All Rights Reserved</div>
+    <div>Fully Online • Serving Pakistan & Worldwide</div>
+    <a class="admin-link" href="homeoclinic_admin.html">⚙ Doctor Portal</a>
+  </div>
+</footer>
+</div><!-- /home -->
+
+<!-- ═══ DOCTOR PAGE ═══ -->
+<div class="page" id="page-doctor">
+<div class="doctor-hero">
+  <div class="doctor-avatar"><img id="doc-logo-img" src="" alt="HomeoClinic"></div>
+  <h1>Prof. Dr. Tahseen</h1>
+  <div class="title">Homeopathic Consultant — Specialist Doctor Online</div>
+  <p class="desc">A distinguished practitioner of Classical Kentian Homeopathy with deep expertise in chronic disease management through single constitutional remedy approach.</p>
+</div>
+<div class="doctor-body">
+  <div class="doctor-grid">
+    <div class="info-card"><h3>Qualifications & Training</h3><ul class="info-list"><li>Qualified Homeopathic Consultant Specialist</li><li>Expert in Classical Kentian Homeopathy protocol</li><li>Single remedy constitutional prescribing</li><li>Advanced training in chronic disease management</li><li>Experienced in mental-emotional case analysis</li></ul></div>
+    <div class="info-card"><h3>Areas of Expertise</h3><ul class="info-list"><li>Gastric & Digestive Disorders (IBS, Ulcers, H. Pylori)</li><li>Women's Health (PCOS, Fibroids, Menopause)</li><li>Skin Diseases (Acne, Eczema, Psoriasis, Melasma)</li><li>Kidney Stones — Non-surgical approach</li><li>Hormonal Imbalances & Thyroid disorders</li><li>Depression, Anxiety & Mental Health</li><li>Cancer Supportive Care</li></ul></div>
+    <div class="info-card"><h3>Clinical Approach</h3><ul class="info-list"><li>Detailed constitutional case-taking (60–90 min)</li><li>Mental-emotional symptom analysis</li><li>Single remedy prescription (Classical Kent)</li><li>Follow-up assessment at 7 days</li><li>Miasmatic analysis for deep chronic cases</li></ul></div>
+    <div class="info-card"><h3>Languages & Availability</h3><ul class="info-list"><li>Consultations in Urdu, Pashto & English</li><li>Available Monday – Saturday, 10 AM – 8 PM PKT</li><li>Serving patients across Pakistan & 18 countries</li><li>Prescription delivered within 24 hours</li><li>Free 7-day follow-up included</li></ul></div>
+  </div>
+  <div class="quote-card" style="max-width:700px;margin:40px auto 0"><blockquote>"The most natural way to heal – from the root."</blockquote><cite>— Prof. Dr. Tahseen, Homeopathic Consultant | HomeoClinic Online</cite></div>
+  <div style="text-align:center;margin-top:40px"><button class="btn-primary" onclick="showPage('consultation')">Book a Consultation</button></div>
+</div>
+<footer><div class="footer-body"><div class="footer-brand"><div class="nav-logo" onclick="showPage('home')" style="cursor:pointer"><img class="nav-logo-img" src="" alt="HC" id="ftr2"><div class="nav-logo-text"><div class="brand" style="color:white">HomeoClinic</div><div class="sub" style="color:var(--gs)">Online Clinic</div></div></div><p>Specialist online homeopathic clinic providing holistic treatment for chronic diseases across Pakistan and 18 countries worldwide.</p></div><div><h4>Quick Links</h4><ul><li><a onclick="showPage('home')">Home</a></li><li><a onclick="showPage('specialities')">Specialities</a></li><li><a onclick="showPage('consultation')">Book Consultation</a></li><li><a onclick="showPage('contact')">Contact</a></li></ul></div><div><h4>Contact</h4><ul><li><a href="https://wa.me/923005857458">+92 300 5857458</a></li><li><a href="mailto:homeocliniconlinee@gmail.com">homeocliniconlinee@gmail.com</a></li></ul></div><div><h4>Hours</h4><ul><li>Mon – Sat</li><li>10:00 AM – 8:00 PM PKT</li></ul></div></div><div class="footer-bottom"><div>© 2026 HomeoClinic • All Rights Reserved</div><a class="admin-link" href="homeoclinic_admin.html">⚙ Doctor Portal</a></div></footer>
+</div>
+
+<!-- ═══ SPECIALITIES PAGE ═══ -->
+<div class="page" id="page-specialities">
+<div class="spec-page-hero"><div class="hero-badge" style="margin-bottom:20px">🌿 Holistic Treatment • Permanent Results</div><h1>Our Specialities</h1><p>Proven homeopathic remedies for chronic conditions — available 24/7 through our virtual online clinic.</p></div>
+<div class="spec-page-body">
+  <div class="spec-detail-grid">
+    <div class="spec-detail-card"><div class="icon">🫃</div><h3>Gastric Disorders</h3><p>Comprehensive homeopathic treatment for all digestive system disorders using constitutional remedies that address the root cause.</p><div class="spec-tag-list"><span class="spec-tag">IBS</span><span class="spec-tag">Ulcers</span><span class="spec-tag">H. Pylori</span><span class="spec-tag">Hepatitis</span><span class="spec-tag">Liver Cancer</span><span class="spec-tag">Hemorrhoids</span></div></div>
+    <div class="spec-detail-card"><div class="icon">🌸</div><h3>Women's Health</h3><p>Specialized constitutional treatment for women's reproductive and hormonal health, addressing both physical and emotional dimensions.</p><div class="spec-tag-list"><span class="spec-tag">PCOS</span><span class="spec-tag">Leukorrhea</span><span class="spec-tag">Uterine Fibroids</span><span class="spec-tag">Infertility</span><span class="spec-tag">Menopause</span></div></div>
+    <div class="spec-detail-card"><div class="icon">✨</div><h3>Skin & Beauty</h3><p>Natural homeopathic approach to skin diseases, treating the underlying constitutional disturbance without steroids.</p><div class="spec-tag-list"><span class="spec-tag">Acne</span><span class="spec-tag">Melasma</span><span class="spec-tag">Eczema</span><span class="spec-tag">Psoriasis</span><span class="spec-tag">Facial Hair</span><span class="spec-tag">Hairfall</span></div></div>
+    <div class="spec-detail-card"><div class="icon">⚖️</div><h3>Hormonal Imbalances</h3><p>Constitutional homeopathic treatment regulates the endocrine system naturally, restoring hormonal balance without synthetic hormones.</p><div class="spec-tag-list"><span class="spec-tag">Thyroid</span><span class="spec-tag">Adrenal</span><span class="spec-tag">PCOS</span><span class="spec-tag">Weight Issues</span></div></div>
+    <div class="spec-detail-card"><div class="icon">🫘</div><h3>Kidney Stones</h3><p>Non-surgical homeopathic treatment for kidney stones with high success rates. Patients report no recurrence after constitutional treatment.</p><div class="spec-tag-list"><span class="spec-tag">Kidney Stones</span><span class="spec-tag">Renal Colic</span><span class="spec-tag">UTI</span><span class="spec-tag">Prostatitis</span></div></div>
+    <div class="spec-detail-card"><div class="icon">🧠</div><h3>Mental & Emotional Health</h3><p>Homeopathic treatment for mental and emotional disorders addresses the underlying constitutional disturbance for lasting relief.</p><div class="spec-tag-list"><span class="spec-tag">Depression</span><span class="spec-tag">Anxiety</span><span class="spec-tag">Insomnia</span><span class="spec-tag">Grief</span></div></div>
+    <div class="spec-detail-card"><div class="icon">💪</div><h3>Male Sexual Health</h3><p>Confidential and effective homeopathic treatment for male sexual health issues with proven constitutional remedies.</p><div class="spec-tag-list"><span class="spec-tag">Male Sexual Issues</span><span class="spec-tag">Infertility</span><span class="spec-tag">Prostatitis</span></div></div>
+    <div class="spec-detail-card"><div class="icon">👃</div><h3>Nose & Throat (ENT)</h3><p>Homeopathic treatment for ENT disorders, including seasonal allergies common to the Peshawar region and KPK climate.</p><div class="spec-tag-list"><span class="spec-tag">Sinusitis</span><span class="spec-tag">Allergic Rhinitis</span><span class="spec-tag">Tonsillitis</span></div></div>
+  </div>
+  <div style="text-align:center;margin-top:50px;background:var(--gp);border-radius:var(--r);padding:40px"><h2 style="font-family:'Cormorant Garamond',serif;font-size:34px;color:var(--gd);margin-bottom:12px">Don't See Your Condition?</h2><p style="color:var(--tm);margin-bottom:24px">Classical Homeopathy treats the whole person, not just the disease. Contact us and we'll guide you.</p><button class="btn-primary" onclick="showPage('consultation')">Start Consultation</button></div>
+</div>
+<footer><div class="footer-body"><div class="footer-brand"><div class="nav-logo" onclick="showPage('home')" style="cursor:pointer"><img class="nav-logo-img" src="" alt="HC" id="ftr3"><div class="nav-logo-text"><div class="brand" style="color:white">HomeoClinic</div><div class="sub" style="color:var(--gs)">Online Clinic</div></div></div><p>Specialist online homeopathic clinic providing holistic treatment for chronic diseases across Pakistan and 18 countries worldwide.</p></div><div><h4>Quick Links</h4><ul><li><a onclick="showPage('home')">Home</a></li><li><a onclick="showPage('doctor')">Meet Dr. Tahseen</a></li><li><a onclick="showPage('consultation')">Book Consultation</a></li><li><a onclick="showPage('contact')">Contact</a></li></ul></div><div><h4>Contact</h4><ul><li><a href="https://wa.me/923005857458">+92 300 5857458</a></li></ul></div><div><h4>Hours</h4><ul><li>Mon–Sat 10AM–8PM PKT</li></ul></div></div><div class="footer-bottom"><div>© 2026 HomeoClinic • All Rights Reserved</div><a class="admin-link" href="homeoclinic_admin.html">⚙ Doctor Portal</a></div></footer>
+</div>
+
+<!-- ═══ CONSULTATION PAGE ═══ -->
+<div class="page" id="page-consultation">
+<div class="consult-hero">
+  <div class="hero-badge" style="margin-bottom:20px">PKR 2,000 Consultation Fee • ⭐ 50% Off for Peshawar / KP Patients</div>
+  <h1>Start Your Healing Journey</h1>
+  <p>Certified Homeopathic Specialist Consultation Online — Fill the form and receive your personalized prescription within 24 hours.</p>
+  <div class="trust-badges"><span class="trust-badge">✅ Verified Doctor</span><span class="trust-badge">🔒 Privacy Protected</span><span class="trust-badge">📋 Detailed Analysis</span><span class="trust-badge">💬 Direct Support</span></div>
+</div>
+<div class="consult-body">
+  <div class="consult-layout">
+    <div>
+      <div class="form-wrapper">
+        <div style="font-size:13px;color:var(--tl);margin-bottom:28px">Takes approx 5–10 mins • Fields marked <span style="color:#e53e3e">*</span> are required</div>
+        <div class="form-section">
+          <div class="form-section-title">1) Patient Identification</div>
+          <div class="form-grid">
+            <div class="form-group"><label>Full Name <span>*</span></label><input id="p-name" type="text" placeholder="Enter full name"></div>
+            <div class="form-group"><label>Age <span>*</span></label><input id="p-age" type="number" placeholder="Age in years"></div>
+            <div class="form-group"><label>Gender <span>*</span></label><select id="p-gender"><option value="">Select…</option><option>Male</option><option>Female</option><option>Other</option></select></div>
+            <div class="form-group"><label>Marital Status</label><select id="p-marital"><option value="">Select…</option><option>Single</option><option>Married</option><option>Divorced</option><option>Widowed</option></select></div>
+            <div class="form-group"><label>Occupation</label><input id="p-occ" type="text" placeholder="Your occupation"></div>
+            <div class="form-group"><label>City / Location <span>*</span></label><input id="p-city" type="text" placeholder="City or area"></div>
+            <div class="form-group"><label>WhatsApp Number <span>*</span></label><input id="p-phone" type="tel" placeholder="+92 300 0000000"></div>
+            <div class="form-group"><label>Email Address</label><input id="p-email" type="email" placeholder="your@email.com"></div>
+            <div class="form-group full"><label>Chief Complaint <span>*</span></label><textarea id="p-complaint" placeholder="This is the most important field. Write as freely as possible about your main health concern…"></textarea></div>
+          </div>
+        </div>
+        <div class="form-section">
+          <div class="form-section-title">2) Mental & Emotional State</div>
+          <div class="form-grid">
+            <div class="form-group full"><label>How would you describe your personality?</label><textarea id="p-personality" placeholder="Describe your personality, temperament…"></textarea></div>
+            <div class="form-group"><label>Introvert / Extrovert?</label><select id="p-intro"><option value="">Select…</option><option>Introvert</option><option>Extrovert</option><option>Mixed</option></select></div>
+            <div class="form-group"><label>Memory</label><select id="p-memory"><option value="">Select…</option><option>Good</option><option>Weak</option><option>Selective</option><option>Forgetful</option></select></div>
+            <div class="form-group full"><label>What bothers or worries you most in life?</label><textarea id="p-worries" placeholder="Fears, anxieties, worries…"></textarea></div>
+            <div class="form-group full"><label>Emotional tendencies (select all)</label>
+              <div class="checkbox-group">
+                <div class="checkbox-item"><input type="checkbox" class="p-emotion" value="Anxiety about health"><label>Anxiety about health</label></div>
+                <div class="checkbox-item"><input type="checkbox" class="p-emotion" value="Anxiety about future"><label>Anxiety about future</label></div>
+                <div class="checkbox-item"><input type="checkbox" class="p-emotion" value="Fear of disease"><label>Fear of disease</label></div>
+                <div class="checkbox-item"><input type="checkbox" class="p-emotion" value="Fear of death"><label>Fear of death</label></div>
+                <div class="checkbox-item"><input type="checkbox" class="p-emotion" value="Anger suppressed"><label>Anger (suppressed)</label></div>
+                <div class="checkbox-item"><input type="checkbox" class="p-emotion" value="Anger explosive"><label>Anger (explosive)</label></div>
+                <div class="checkbox-item"><input type="checkbox" class="p-emotion" value="Irritability"><label>Irritability</label></div>
+                <div class="checkbox-item"><input type="checkbox" class="p-emotion" value="Sadness/grief"><label>Sadness or grief</label></div>
+                <div class="checkbox-item"><input type="checkbox" class="p-emotion" value="Weeping easily"><label>Weeping easily</label></div>
+                <div class="checkbox-item"><input type="checkbox" class="p-emotion" value="Jealousy"><label>Jealousy</label></div>
+                <div class="checkbox-item"><input type="checkbox" class="p-emotion" value="Fear of being alone"><label>Fear of being alone</label></div>
+                <div class="checkbox-item"><input type="checkbox" class="p-emotion" value="Desire for company"><label>Desire for company</label></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-section">
+          <div class="form-section-title">3) General Symptoms</div>
+          <div class="form-grid">
+            <div class="form-group"><label>Thermal State</label><select id="p-thermal"><option value="">Select…</option><option>Feels hot most of the time</option><option>Feels cold most of the time</option><option>Mixed</option></select></div>
+            <div class="form-group"><label>Perspiration</label><select id="p-sweat"><option value="">Select…</option><option>Yes, a lot</option><option>Normal</option><option>Very little</option><option>Not at all</option></select></div>
+            <div class="form-group"><label>Thirst</label><select id="p-thirst"><option value="">Select…</option><option>Drinks a lot of water</option><option>Barely feels thirsty</option><option>Takes small sips</option><option>Prefers cold water</option><option>Prefers warm water</option></select></div>
+            <div class="form-group"><label>Appetite</label><select id="p-appetite"><option value="">Select…</option><option>Increased</option><option>Decreased</option><option>Normal</option><option>Variable</option></select></div>
+            <div class="form-group"><label>Sleep trouble</label><select id="p-sleep"><option value="">Select…</option><option>Difficulty falling asleep</option><option>Waking after midnight</option><option>Early morning waking</option><option>No sleep issues</option></select></div>
+            <div class="form-group"><label>Energy best at</label><select id="p-energy"><option value="">Select…</option><option>Morning</option><option>Afternoon</option><option>Evening</option><option>Night</option></select></div>
+            <div class="form-group full"><label>Food desires (strong cravings)</label>
+              <div class="checkbox-group">
+                <div class="checkbox-item"><input type="checkbox" class="p-desire" value="Sweets"><label>Sweets</label></div>
+                <div class="checkbox-item"><input type="checkbox" class="p-desire" value="Salt"><label>Salt</label></div>
+                <div class="checkbox-item"><input type="checkbox" class="p-desire" value="Sour food"><label>Sour food</label></div>
+                <div class="checkbox-item"><input type="checkbox" class="p-desire" value="Spicy food"><label>Spicy food</label></div>
+                <div class="checkbox-item"><input type="checkbox" class="p-desire" value="Meat"><label>Meat</label></div>
+                <div class="checkbox-item"><input type="checkbox" class="p-desire" value="Cold drinks"><label>Cold drinks</label></div>
+                <div class="checkbox-item"><input type="checkbox" class="p-desire" value="Warm food"><label>Warm food</label></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-section">
+          <div class="form-section-title">6) Chief Complaint Details</div>
+          <div class="form-grid">
+            <div class="form-group full"><label>Location: Where exactly in the body?</label><input id="p-location" type="text" placeholder="Be specific — e.g. right lower abdomen, lower back, scalp…"></div>
+            <div class="form-group full"><label>Sensation</label>
+              <div class="checkbox-group">
+                <div class="checkbox-item"><input type="checkbox" class="p-sensation" value="Burning"><label>Burning</label></div>
+                <div class="checkbox-item"><input type="checkbox" class="p-sensation" value="Stitching/sharp"><label>Stitching/sharp</label></div>
+                <div class="checkbox-item"><input type="checkbox" class="p-sensation" value="Throbbing"><label>Throbbing</label></div>
+                <div class="checkbox-item"><input type="checkbox" class="p-sensation" value="Cramping"><label>Cramping</label></div>
+                <div class="checkbox-item"><input type="checkbox" class="p-sensation" value="Dull ache"><label>Dull ache</label></div>
+                <div class="checkbox-item"><input type="checkbox" class="p-sensation" value="Heaviness"><label>Heaviness</label></div>
+                <div class="checkbox-item"><input type="checkbox" class="p-sensation" value="Numbness"><label>Numbness</label></div>
+              </div>
+            </div>
+            <div class="form-group full"><label>What makes it WORSE?</label>
+              <div class="checkbox-group">
+                <div class="checkbox-item"><input type="checkbox" class="p-worse" value="Cold weather"><label>Cold weather</label></div>
+                <div class="checkbox-item"><input type="checkbox" class="p-worse" value="Heat"><label>Heat</label></div>
+                <div class="checkbox-item"><input type="checkbox" class="p-worse" value="Movement"><label>Movement</label></div>
+                <div class="checkbox-item"><input type="checkbox" class="p-worse" value="Rest"><label>Rest</label></div>
+                <div class="checkbox-item"><input type="checkbox" class="p-worse" value="Morning"><label>Morning</label></div>
+                <div class="checkbox-item"><input type="checkbox" class="p-worse" value="Evening"><label>Evening</label></div>
+                <div class="checkbox-item"><input type="checkbox" class="p-worse" value="Night"><label>Night</label></div>
+                <div class="checkbox-item"><input type="checkbox" class="p-worse" value="After eating"><label>After eating</label></div>
+                <div class="checkbox-item"><input type="checkbox" class="p-worse" value="Stress"><label>Stress</label></div>
+              </div>
+            </div>
+            <div class="form-group full"><label>What makes it BETTER?</label>
+              <div class="checkbox-group">
+                <div class="checkbox-item"><input type="checkbox" class="p-better" value="Warmth"><label>Warmth</label></div>
+                <div class="checkbox-item"><input type="checkbox" class="p-better" value="Cold application"><label>Cold application</label></div>
+                <div class="checkbox-item"><input type="checkbox" class="p-better" value="Movement"><label>Movement</label></div>
+                <div class="checkbox-item"><input type="checkbox" class="p-better" value="Rest"><label>Rest</label></div>
+                <div class="checkbox-item"><input type="checkbox" class="p-better" value="Eating"><label>Eating</label></div>
+                <div class="checkbox-item"><input type="checkbox" class="p-better" value="Sleep"><label>Sleep</label></div>
+                <div class="checkbox-item"><input type="checkbox" class="p-better" value="Company"><label>Company</label></div>
+              </div>
+            </div>
+            <div class="form-group"><label>How did it start?</label><select id="p-onset"><option value="">Select…</option><option>Suddenly</option><option>Gradually</option><option>After a specific event</option></select></div>
+            <div class="form-group"><label>Duration</label><input id="p-duration" type="text" placeholder="e.g. 3 months, 2 years…"></div>
+          </div>
+        </div>
+        <div class="form-section">
+          <div class="form-section-title">8) Past Medical History</div>
+          <div class="form-grid">
+            <div class="form-group full"><label>Childhood illnesses?</label><input id="p-childhood" type="text" placeholder="e.g. measles, chickenpox, typhoid…"></div>
+            <div class="form-group"><label>Rashes suppressed with steroids?</label><select id="p-rashes"><option value="">Select…</option><option>Yes</option><option>No</option><option>Not sure</option></select></div>
+            <div class="form-group full"><label>Major surgeries / chronic diagnoses?</label><textarea id="p-surgery" placeholder="List any surgeries, chronic diseases previously diagnosed…"></textarea></div>
+          </div>
+        </div>
+        <div class="form-section">
+          <div class="form-section-title">10) Current Medications</div>
+          <div class="form-grid">
+            <div class="form-group"><label>Taking allopathic medicines?</label><select id="p-allopathic"><option value="">Select…</option><option>Yes</option><option>No</option></select></div>
+            <div class="form-group full"><label>If yes, list them</label><textarea id="p-medicines" placeholder="Medicine names, doses, duration…"></textarea></div>
+            <div class="form-group full"><label>Previous homeopathic treatment?</label><textarea id="p-homeo" placeholder="Remedy names and response…"></textarea></div>
+          </div>
+        </div>
+        <div class="form-section">
+          <div class="form-section-title">13) Patient Expectation</div>
+          <div class="form-grid">
+            <div class="form-group full"><label>What result are you expecting?</label><textarea id="p-expectation" placeholder="Describe your treatment goals…"></textarea></div>
+            <div class="form-group"><label>How long suffering?</label><input id="p-suffering" type="text" placeholder="e.g. 6 months, 5 years…"></div>
+            <div class="form-group"><label>How did you hear about us?</label><select id="p-source"><option value="">Select…</option><option>Google Search</option><option>WhatsApp</option><option>Referred by someone</option><option>Social Media</option><option>Other</option></select></div>
+          </div>
+        </div>
+        <button class="btn-submit" onclick="submitForm()">Submit Consultation Form</button>
+        <a class="whatsapp-link" href="https://wa.me/923005857458?text=Hello%2C+I+have+filled+the+consultation+form+on+HomeoClinic.online+and+paid+the+fee." target="_blank">📱 Or just message us on WhatsApp →</a>
+      </div>
+    </div>
+    <div>
+      <div class="steps-bar">
+        <h3>How It Works</h3>
+        <div class="steps-list">
+          <div class="step-item"><div class="step-num">1</div><p>Fill the detailed online case form & select your language from the top dropdown</p></div>
+          <div class="step-item"><div class="step-num">2</div><p>Send your previous medical reports on WhatsApp</p></div>
+          <div class="step-item"><div class="step-num">3</div><p>Pay PKR 2,000 via EasyPaisa / JazzCash</p></div>
+          <div class="step-item"><div class="step-num">4</div><p>Receive personalized prescription within 24 hours</p></div>
+          <div class="step-item"><div class="step-num">5</div><p>Free follow-up consultation after 7 days</p></div>
+        </div>
+      </div>
+      <div class="payment-box">
+        <h3>Secure Payment</h3>
+        <div class="fee-badge"><div class="amount">PKR 2,000</div><div class="lbl">Consultation Fee</div></div>
+        <div class="discount-note">⭐ 50% Fee Off for Peshawar / KP Patients</div>
+        <div class="payment-method"><strong>🇵🇰 Pakistan (Local)</strong><span>EasyPaisa / JazzCash:<br><strong>0300-5857458</strong></span></div>
+        <div class="payment-method"><strong>🌍 International</strong><span>Allied Bank<br>Acc: <strong>0010008552040035</strong></span></div>
+        <p style="font-size:12px;color:var(--tl);margin-top:10px;line-height:1.6">Share payment confirmation on WhatsApp to confirm your appointment.</p>
+        <a class="whatsapp-link" href="https://wa.me/923005857458" target="_blank" style="margin-top:16px">📱 Confirm on WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</div>
+<footer><div class="footer-body"><div class="footer-brand"><div class="nav-logo" onclick="showPage('home')" style="cursor:pointer"><img class="nav-logo-img" src="" alt="HC" id="ftr4"><div class="nav-logo-text"><div class="brand" style="color:white">HomeoClinic</div><div class="sub" style="color:var(--gs)">Online Clinic</div></div></div><p>Specialist online homeopathic clinic providing holistic treatment for chronic diseases across Pakistan and 18 countries worldwide.</p></div><div><h4>Quick Links</h4><ul><li><a onclick="showPage('home')">Home</a></li><li><a onclick="showPage('doctor')">Meet Dr. Tahseen</a></li><li><a onclick="showPage('specialities')">Specialities</a></li><li><a onclick="showPage('contact')">Contact</a></li></ul></div><div><h4>Contact</h4><ul><li><a href="https://wa.me/923005857458">+92 300 5857458</a></li></ul></div><div><h4>Hours</h4><ul><li>Mon–Sat 10AM–8PM PKT</li></ul></div></div><div class="footer-bottom"><div>© 2026 HomeoClinic • All Rights Reserved</div><a class="admin-link" href="homeoclinic_admin.html">⚙ Doctor Portal</a></div></footer>
+</div>
+
+<!-- ═══ CONTACT PAGE ═══ -->
+<div class="page" id="page-contact">
+<div class="contact-hero"><h1>Contact Us</h1><p>Get in touch for consultations, questions, or to send your medical reports before your appointment.</p></div>
+<div class="contact-body">
+  <div class="contact-grid">
+    <div class="contact-card">
+      <h3>Get in Touch</h3>
+      <div class="contact-item"><div class="contact-icon">📱</div><div><strong>WhatsApp / Phone</strong><br><a href="https://wa.me/923005857458">+92 300 5857458</a></div></div>
+      <div class="contact-item"><div class="contact-icon">📧</div><div><strong>Email</strong><br><a href="mailto:homeocliniconlinee@gmail.com">homeocliniconlinee@gmail.com</a></div></div>
+      <div class="contact-item"><div class="contact-icon">🕐</div><div><strong>Clinic Hours</strong><br><span>Monday – Saturday<br>10:00 AM – 8:00 PM (PKT)</span></div></div>
+      <div class="contact-item"><div class="contact-icon">🌐</div><div><strong>Consultation Languages</strong><br><div class="languages-list"><span class="lang-badge">Urdu اردو</span><span class="lang-badge">Pashto پښتو</span><span class="lang-badge">English</span><span class="lang-badge">Farsi فارسی</span><span class="lang-badge">Arabic العربية</span></div></div></div>
+      <a class="whatsapp-link" href="https://wa.me/923005857458" target="_blank">📱 Message on WhatsApp</a>
+    </div>
+    <div>
+      <div class="countries-card" style="margin-bottom:24px"><h3>Global Reach</h3><p>HomeoClinic Online serves patients from Pakistan and around the world, providing classical homeopathic care regardless of your location.</p><div class="countries-num">18</div><div style="color:var(--goldl);font-size:14px;margin-top:4px">Countries Worldwide</div></div>
+      <div class="contact-card">
+        <h3>Base Location</h3>
+        <div class="contact-item"><div class="contact-icon">📍</div><div><strong>Primary Service Area</strong><br><span>Peshawar, Khyber Pakhtunkhwa, Pakistan</span></div></div>
+        <div style="margin-top:16px;padding:16px;background:var(--gp);border-radius:10px;font-size:13px;color:var(--gd)"><strong>Areas Served in Peshawar:</strong><br>Hayatabad • Saddar • University Road • Dabgari Garden • Phase 1–8 • Bashirabad • Warsak Road</div>
+        <div style="margin-top:16px"><button class="btn-primary" onclick="showPage('consultation')" style="width:100%">Book Consultation</button></div>
+      </div>
+    </div>
+  </div>
+</div>
+<footer><div class="footer-body"><div class="footer-brand"><div class="nav-logo" onclick="showPage('home')" style="cursor:pointer"><img class="nav-logo-img" src="" alt="HC" id="ftr5"><div class="nav-logo-text"><div class="brand" style="color:white">HomeoClinic</div><div class="sub" style="color:var(--gs)">Online Clinic</div></div></div><p>Specialist online homeopathic clinic providing holistic treatment for chronic diseases across Pakistan and 18 countries worldwide.</p></div><div><h4>Quick Links</h4><ul><li><a onclick="showPage('home')">Home</a></li><li><a onclick="showPage('doctor')">Meet Dr. Tahseen</a></li><li><a onclick="showPage('specialities')">Specialities</a></li><li><a onclick="showPage('consultation')">Book Consultation</a></li></ul></div><div><h4>Contact</h4><ul><li><a href="https://wa.me/923005857458">+92 300 5857458</a></li></ul></div><div><h4>Hours</h4><ul><li>Mon–Sat 10AM–8PM PKT</li></ul></div></div><div class="footer-bottom"><div>© 2026 HomeoClinic • All Rights Reserved</div><a class="admin-link" href="homeoclinic_admin.html">⚙ Doctor Portal</a></div></footer>
+</div>
+
+<a class="wa-float" href="https://wa.me/923005857458" target="_blank">📱</a>
+
+<script>
+const LOGO_SRC = 'data:image/jpeg;base64,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CAAAAAAAAAAAAAAAJYtAACAAAAAAAoAAAIAACggAAAAKCAAAAAAAAAAAAAAAAAAoIAAAAAAAAAAACggAKAACAAAAAoIAAAAAAAAAAAAli0IAAAAAAAACggAAAAAAAAAAAAAAAAAAAAAAAAAAKCAAAoIAAAACggAAAAKACAAAAoIAAAACggAAAAAAAAAAACWLX38IAAAAACgAAAgAAAAAAAAAAAAAAAAKACAAAAAAAAAAAAoIACggAAAKAACAoIAAACgAAAgAAAAAAAAKAAAACAAD6X//xAAC/9oADAMBAAIAAwAAACF3332kEX0kAEAEFW00D33zzzzzzz21333133332n33zmABX3zzz3333333zzzzz33X3333333WlzzxTsn3330kEDEEAEFHH33033377zzzzz10FT333z2EEEDHzEEA3jTz33333333zzzzz3333333FHkEEEHz2lRT3333kEAAEEEAX333337zzz77333333zz3z00E1WnwD3333z3HH3333H3zzzz33333H32kX2kAABTylZT333kAAAFX00kB33333zzzz//AN99998889+B159Bh8AV9999951999999889889995Bx9999xw8499pGU9999JABBA19pAd9918+9999+889988889//AL7+QAPDffffffbffffbXffedfPGffaQHffffbRPDPeaUlPffffTTRSUfaQNffffeffPf/vPPvfffPPfffPPzTfPfffffPPfffffffffffPPPAQHffaccffffffYQnPPHfffffTQfTQFfffedfPPPPPPPPfbXffffPPPPffPffffffffbTPffffPPPKPPbQPffeQVPaVfffSQFPffPffffffffffffPLffvPPPfPfffPLTfffffffffPffedPPfffffffffPfPPvAAdfYcKAMcdffffYQlPfPPPfRTSffffdffPKfffPAYdOccffPPPPfffffffPfeQVffffffbXeR+6AcMMXLWQQVLAIQRTfffQQlPPfdXTTUcfffffPPPfffffvKDDCPfffPPPPffffffPfffffffffffbPUcTdTTXfTSUcTfTfTDPfffaQFPPPfYSMdfffffPPPPPLjffjTTPPfvPPPPPffffcQPPfffffffffffUKAQRVffbSAYQXfeUdffffPvaVvPPDXfffffffffPPPvPPPPfvPPPffPPPvPvPfffQAfPXPfffffffUMMQQAQWPPfeYMffffffffffPPb1PPPPPffffPPPPPPPPPPPPPvfPPvffPPvPPPPPffRTfPffffeccfbGeQQAAABEP/AG033z333zzzzzz3n1bzzzz33zzzzzzzz7zzzzzzzzzz7zzzzzz77z333333zzzznEEFPzgAAAAAAAFHTzz3zzz3zzz33zz0n1LTzzjD3zzziABzzzzzzzz7zz77773zz777/wB9999998888oAQ8VRhAAAAIAABW+989888188999989xpC0888s952+8oU88888888+88+999999/98889/wDfff8AhHDzwsLTEEAAAVDWkAAGD33332hzzz33333021JTzzz7GETzz077zzzz7z7zz7/3333/AN99888984wx9ACDgdAhBAAABFo2osBABlJ998899995w199999G88889999tc898888+++888+89999199989wAAAIORMRRhBBBAABFVfv9xVBABzp9J8898+9sM99999pA8888999998x18988888888899999MN998oMM5QRhBAAAABBBBFVkm9999fpAAFd99d9989NMc9t999pA0888899pRgA8888888888999999999I8g4RhBAAAAABBBBBJcQZw9999pRFBAAt9888xB8999BA999hC8888x5999JR199888888899999518ltRhBBBAAABBABFQ92esd889dt9481BAAdV988oc89tdtd9995G08888899gAU9999888+8995d99985IBABAABBBNNIRn3FN999sc8999hBswBAAgR99889999999999pT88888899tMc9999888899999995VhBAABBFNR/ed9M99999988885999t9YpAACC9p089959999999tY8888999BR19999888889999995IBBBBBBwWNNd9998999/8AfPPPvvPPPfbUaQABQPfXfvbfPPPbfffeQPPPPPeQQAPQdcffPPPPcffffeNIQAARceRfcffffffPfffPfPPPPPPPPffLIAAFdPPPffffHfPbffffRFPPPPLSQHeQBCRXfPPPfffffaYQQQQIXPffffffffXPcdfPPPPPPPPPPPfbBAQQffPPffPPPfPPPffbQFPPPPPffeQRPfTPfPPfffffaCQAQSXYfffffffffffNfffPPPPPPPNPPffSPAQQVfPfffPPPPPfPPfbQNPPPPPffbXfRPfffffedffeCQQARcDXfffcQNfffffEIgPPPPPPPPPPPfffdQQQYVffffPPPPPPPPfeRvfPPPfffcfPPfffffffRfQaYAAAKIXffcYAABffSQfAAAEvPPPPvvPPPPfaXAQQSFffeMvvPPPPPvPvVPPPPfffffPPPfffffffXfROAQQSABeffRSRQfffbQfPShDPPPPPPPPPPPfYfQQARPffaVvPPPPPPPvvUVPPPffffffPPfffPffffaUSQQRfPfSAMffffffffTfMfPPPPPPPPPPPPPfQfAQQSPPPfPuFPPPPPPPIVPPPPPffffeeQRffffffffQAQQTNffTSdfffffffffPLlffPPPPPPPPPPPfAPQQQYfPPbMNBPPPPPPPfVNPPAAMffTQAAAFPfPffQQMQAASHecdffeccfPPIBTRaQCVPPOONPPPPPAIlMQAFCdOPPPPPPPPONPvoFVPPPcdfffTSHfffffffaVUQABSvfffffffffffPfFVKQUfXffedfPPPPdPJAAAEUwRfLPPPPPPPPPvgVDPPbQQPfffXfPfbTXffaVaQAVV/ffeccdcffffeMKQAQQdff/fffPPPKVeFIQQVBwUPvPPPPPPPPvvyVMPPfbUMdfffdfffffffbWaQAQV/ffQRSBPfff8ATwEEAEF1n3333323zy330+kEFRf3z77zzzzzzzz7+EUDz3212F3333HX3H33203mkAEHX33EU333nXzAkEAAAFj33nGEAV33zz33mSEEHBf/AN9988888888+9NAV895xBBx99xhBBB9999BWpABRZhBAJhR7uGJhBBBBFsQd9BBAc9hB89998RBBF0V99988888888++5BAQ8889NNBV95xBBAA999pRhAAUJhB5xmPdBhBBBBBM8c99xhBQ8wBN999t1hBBUN9999888888888++pAc89999995h199MMd999tUJAAAEvPIswxBBBBBBFNXe9918NMd9sc99998YBABTE999988888888888BD099999999Ad95xx99599MpAAA8nQhBBBBBBBFdaH9whFd99999999999EhAAFUBF998o0888888++9BAE89999+9x1999NMd9pV995AAABBAAABBBBJNB8999AM99995xd999999ZAABdiDB9gAAO+888888+8BBU899/wD/AO1z333n33333332kEAAAAAAAEkF3Y133X33z3W0EUwz333nXy2EAEEE0lHz4gJzzzzzzzzzwldT3333zz2l33z333333/3m+EAAAAEFxH6133333333z303z3333333zCEEEFSJ3233yoDDDTzzzzzzylIR3213iRyzzzzDDz333332kAAAAB8uN03333333zzzzzzzzz33333jwEAEFEvX330AAAAAAAADTzzzyEMT332Qz333nTzz333332RgAAAAACHJX3nHz7/zzzzzzz3z33323zjBEEEEDkFXzyoAABywgAATzzzzwEJT333333331333333334AEAAAAAAFREAU33/333333DHEX3333mHWEAAAGgU2nXwww3zzzywBzzzz30EIDH31333mF33333H33liEAAEi0EABFkT3kHHHERz3kBH3333XwGmEEAAWRz2kEFX333zz3333z333320IT3333333333333z32pkEEEiaGEAAFHVwAAAAARywAQzzznC0hAEEEEE1bzzDDzzzzzzzzzzzz3333+8hDzz310EFHzzz3330KiEAEFV2hw0AAAHEx0gAAAAAABTzq7yEEAAEEiW7zzzzDTzzzzzzzzzzzzzzzzlRDwR3kEEEBz3z3330r0EEFCLX0zuEEAAAGFyp/MZb6OJ31EEEEEEFWn333zyADzzzzzzyxzzzzzzz30lAATzykkAwzzz33332mkEETD1G0yZMwEAAAAAFGEEFHAEEEEEEEEmrInX33zwATzzzzzzzzzzzzzzz72kQAAzz0FTx33333331SEEFQr3FX313LqUEAAEEEEEEAAEEEAEE01F3klXX3zzzzzzzzzDzzzzzzzzzz6lQATyAwzBQE3333H2/AEAHu73333332zOkUkEEEEEEAAEEEUm12132G0lH3zzzzz777zzzzzzz33z778lQARywgBGEEH330x330EEF7733333333iTmbvwAU000U3k28xz333033333zzzzz77zzzzzz333Dzz721QAE3HE28EEAFX3333QEEFD/wA951999999988+fzuOtF888999999s88888A088888888888999998/wDedAQQABecBAPPPfffaWaQRVdffffffffcMPfffffffffPfffffffPPKBHPPAAPPvPPPPPPPPPPORPfffYVgeYFafffffcdffffafRZz/ffffffffTTQcdfffffcfPffffffPPPPPPPPCFPPvPPOvPPPPPPfffffeQRkcQAQAHfQT3/fffffTSxffffffffbffcIYccfffTQfPfffPPPPNPOPPPPPPPPPPIgfPPPPPfffeffaQVAQQEMPPfXfv/fffaQdffffffVfffXffAAgQfffffffPfffPPPPHPPPPPPPPPPPPjnfPPPfffffbffaQQgBHKAHfvvvvvv8A3333kADH3013333332wzz3333333z33zzzzzhTzzzzzzzzzzzz3zz3333333H3300kIAwgD3/wD/AP8A77+tHX3303033333333333zz3333z33lT33zzzzzzzzzzzzzzzz7zzzz30333331z3332lQBzjX/AP7X+++/vN999999t99999995998951999d99Q999988899888851888+84ld95BRx9951999NpGRxA15zP++++//wD/AP8A/wDfcdffQQffTXffffffffffTTSPcPbfffTdfffffffPPPPQTfffbTXfffXfeQRaRgQRPfac/wD77/8A/wD/AL/n2033mAT33333233333333332g133333313333y33zz32AT33mH33333321HH2kIADHEEEP8A/wDvvvv/AP8AU99999Md9999995999999t999A19t9x1999999899888999998999999999pB9BCBxhBd9v/AP8A7/f/AP8A/wD333HH333HX3nHW13nHH0kT331z333nHDHX333zz3333z3332Hz333mEH33mEn2kC03EH3n7777/Hf/wD/AOccQUdfedfQQAHfdffffcffffRPffPcdffPPPfPffffPPOMYRffffeQQAAAAAdaQP/EAAL/2gAMAwEAAgADAAAAEHPg16wx/iwgwgw17zwv6QAAAAAEFb3/APP98vf/APr/AP8A7uIJf3z7oNOMMMNOIDX3iEMsMNP888MteIIKofLNON8sMLMMIMNPOsNc/wDhCC2sIA8/fDWLBD29jDDCz+zDCP40+rDfPPfDDOyw9oDDDDDD/wA0x/8A/wD/AAg1O4gxz/8AsMIIMMMIf8MPfMIAABe41/8A/wC8QAA1Pzwz16vgv88//rzzww9+zw8ogPYQwwwzw06x41/vvqglKKgww+wggg1/zywiwwwwQBDjP+wwwwwQDSA3gde/w4/glw1/+4xyw3/6ww8sgxOAwwx/zx+/6zzghgQ1OKgw40ywgwwt+6wiwwyQAg085SgAAwwAPcAU977+wgvj/wAMN+MNMMNONOMMMctCycMNf6MMPONPoLIMdS2oEMM/s88ctO6sKcMMMEUEgEMJX04EMMAAMMMADc8/KMsMEEIIMMMMMMMMMMMAAAD/AOjDDXPPDDDDPLc9jmCjD/8A/wD88P8APCXLDDHLU9oAA195DDTjDBDCCAAzzCPf/jDDDDDTyDDDDCOAAUCBT+DDDH/qDXrDDD3fqDHCDzjDDDTDD/8A+wgkw8oAAgwAwQQgk8wwwwwwwwwv/wCscoYsMMMMMMMMaMAAIL78sN85b488sMMMN/2oMIIIMPvPcMM//WsIJcMEAD98gU88MwwwgMMPMMMNLd+f+sMMMMMNOMPVR78ww+JOf/8AqS+f/wC8w14//ajiwy4887zww/8A3y4oMMMMMIBTDDYMEFT32gMMcu897+sMMNf+sNOMNL9yn2/POMPPe8/MPMPLIMEMNX/r6IMN/Y8sMMf/AM88BFNazDCxzwABCFMA99tDPfvzC6zjDDP/AL+www24idfTVSw09v3/AOMMe8sMMMA79ekLwrOMMMMMMN//AO+ozxxEMBCBNABDwBxiA/8AAw2/wg6g4g41/wCMMMO7bDXz2nz48sd48MMMMMMMMMAB1OtPX64MMMNb7774AAAEEAD34FCAIM+wFIDDAABHf0c8oMMMMMc88NpLz3zzzwVK0NPMMIEMMIIIIIAHuulPzzy//wC+/wD/AL74wNz60AHDzzwALTgAgABMIAEENPNMAAAAc/8A/tTDt8888889hyCCDG/oDAACDDCAFJrtLw85w/8AvfOIAX6wVPQTXT/PMwzshfqAgggwQQwwwQQAAAFvrgotffPPPNfPPXpf6j0sgCQAAwwwwF8/fS1PPLPedvvqFfeQfeRfbQxffvbQ2/ffyQABCQwQQYxLTggufXNffPPPUO8fPOT/APvMENaIDAMMMMF8/O2rxzz/ADjG6wVO6w/99+9/BU+/xzD/AP8AuMEADCEAY48Oshxr5G33zzz3T8xS33z1iO8MAAMEEMc4sMF/+nkb777f/wDjRgABAQ18/wD8oVfMkAQwyywwwwATPPLx0GihjvffffPOdaiVf4LNfPeg69wAAQAg0sgwwQf1fw3OliwwwwwDSQgUPKAAgAAAAwwyw8swwxltr887LTXPPPPfecdU2pQw085dfPKX6w4QQwAc8og0wQ/1f29P+ogw173vgggANOogAQAwww09www9gqDTbffPPPNPbaQQSVUtjgwQU1/zvfLADwAIDfwgww//AIMP930MQII8cMMPe8sMNywgAzy4MMMMMcsaNAH3333zzz31AHViuCR4MIAGFEMZXL3zzNcMABSIINONOMNe8fksP4oAAMN76oMNOPT01fz8MeMMMMZNx3y3zz33E0QAKl4e2sMNCQkEEN/8S7XzyHusEAwMMMMMMMMPNexf64IAAMNPKINMMMDTzyMMMMMMPpy33zz3HXxcXJ6+z8//ANpDAU99NDBDRZH988uI/XI9JDHDDDDDDHTnXiOABBB/vLDDDDGMc/8AAwwwwwxoHfedcYP7Hr3TT98u9/4wQAADzwAggxWalfPPQuw4coUQABAUww8x/wAMAIIMf/74P8s8PL//AOLPDDDDfu988tJlWVpNDR97DCP/APwAwFPPDiggg0YhYfPNfqggwQwwo1q0ww9w+6AAjik9/ox/ut+496ngwwwwxznfffeZms/wwwx3yw4l897ghj3PvrggjgQULPfaUoggwwjjgxiggx/0/wCgAL64MMMf/oMPIML7/wDLDDDHc8959yrvDHDPf/8A/wDf7f3/AMiC2882/wBwowwdHFffR/vywzvrDAgQAA30/wAkALb4sMNOEPoMMNf/AN73DDX5d89sJPf/AA38wt/f/wD/AOSiA8gAAw08+/8AywSQQBffY1//AMdDH3woLAAMEXkAHb789+s8AAMMMNf/AN9HD/i0888EJd/vziCCH53JB8CABT88y07/APPvuhfVcFffV1//APjP/wB986w+wCDrVhCD19/rAEMBDDHf/wD/AN8Pqn330XiTv/8AHLHD/wD/AO0Pr0oU334I4137/KoXlumHz27/AL/pX999+uCADCDurAHDDDfvLAABDHW//wD/APtep320mX30oLP/AP8A88//AP8ADCNA88DSyyhBS/8AogQfwBXfS/us/PuFPeADjDSHawwMggw3+4xRf+w//wD/AP8A4w+vYffP/fTy9/8AvMMPf+MAJiYvKMSIBAEDLKoEDw5HHGv65+zDQb7oKJT30GssEH748MPP7776oPINP/8AyZwAB9dHPb/7HPPCCCe7z5ht8n+qGEIABBAC8esQAAUE24g9999pACGZjCcqoACDPLj7jz0hDfrDT/8A98sDDLUf6w0/4wwwwwwg1hdeffUn/wA8csAAwIMgB5zwQU2MXy7yxCAIIIgsL2vIANP/AODDLDhADTTzj/zX/V89p0/DDHPPLPDBDDC/48Jp9kX9/DDAAWuXrEf5t99tDS+95gCCAEAyiD1rOADDTuPLDDDJDDDDD/DTjd894d7BD/726DDDV/WM9wBFVn/zjDDBRW/TDH1JF9dV/wDvvvIAjigKFDg3evgAw0434wwwzywzww1281/fHeFwwT+8wwxyywrHfIAAcKs9z3/u4w9sgw164ffbfff/AP8A2CW++uAQGBx/rADHP/8Azwwz3/8A/wDDDDD/ALffHXT3/wD7d+8lC3i13310XfpsP/8A+iBd/CDDDbYNN9xXz/8A/ggvvv1qkspf/wC4AIIPPP8ArDHP/wD/AL4MMNft3zy39/8ACCd4eAhF9999NQf/APz3/wC4I7/MMMNPJX32mb//AP8A/uvvv/8A6oQ4JdeIAMM888sd8sMPLKMNf9P/AA88sGUwK3gZV9tN9pxe8QjDLAzyjDSiDDDDLId89SG//wD/AP77777a4JX2j9QqV/8ArDDDD+jDHPPDDb/Dip888jE0N999V99xxGwVrOf7jBDDDDDDDDDXLV885IrH/wD/ACjTz65byBLcH9fgBc+8sAM8sMMPPKMOtcMfrzzw03zzzkFXnxPf7/8AB+yDDDDHPjX/AKww6/PPOUeAQ/4AQDvuv/vDgAwPXqQE9/YQU4gwwxwww9//AMMMfXzzzzzzyEkUpEd//e88IMtP/vLIMv8AHL/l989pfPLT8/JDc8+++6iA9A3ooBDDDCCDVhDADDDDT/8AQ+qffPPPOdeYsV//AM8//P8A/CDDzCDDDDjDDG5d999wgf8A7/8AyoDDDTzyjIBQhe1qMNOMZqJJL/8AzzqDDDDDit88888VzxfzBR3/AMwwjjg0hnv+owwwxyi1fBbYed//AP8ADDASjDCLD2+4yibU6DDDayDDDHIQ6jDDDDXuUc88888uYWzHNACjAQ6y2BCDyDDHLTCWI8999tHBX88qBAAesJB3G+7BMIpVqDHLDDDDDDjDDDDDzDR59888888t1v8Au8QQwQww40bjz+w044y0y9fPPPRZz69fDDD/AL6zywJ7IJDGH9349OOMMMd+MNPMM8MMN93zz1973zz21Msf888/qIMf68MMMMtadGX3zzltb+sMNf8Az/6yzzzziDDDDDT94BBDDDDDBBJDDDCDDhB999sQO888990ryi8884gQ85wAAb2XkU95lBx8U88ww888c+MMAMMAABDPNPb1uAABDj//ALQABiwww/D7fPaAy0uvfPPPfUptsssssst6ghePnHfPKQSbzOAPfcNABgADBTf/AI8AAIIDAWu4LqMf/wD/APohzgwww8JxXfRHC885uffPPLaK9HMx09bXCzkXfffeQXf+9wzvIAPPsgEP/wC9v7/LIIIEPe/7oIJff7LIIAMMesNuT33yMu9PJmEXXzzzzz113vmHQn2333330hhivf8AD/8AABvjjCPPvvrvv/7gBTgVe9vsgg/6gowQQww0w39ffeSKz6wwz5OfffPPffffffPBfffPQTFc/wDstfd//wA84w9999z+/wD+gNPPfeQlS3ugnssjqv8AMMMM8NEv3znCSsMMMf8AJntKw5xx95998gRBx19/Off9jvLT/wD/ADLBH/8A6w888+CCBRg2uH1rW6iS2+vf/wDwww8ow4/ffTTPwwww9/6xi2oRezSQQQSD+9jGwk//AP8AP/8A/wD/AO8A99jDAQwwACDDDOCACVRrW/zPPzR//wDv6www1/wXfR/Sgxyw0+4zzyQA4VQLis2owgDSw03/AOz77774PT7ywwAAAAY4IMMMMNCNe8vf377sc7r4IIMMd+kOkEEHMMMMMMP/APyy/wD/AM//AP8A7xwgw/8A/wDLDCW+rHfz2CCoSw+sNtM++++KH6DB99dp/HerXDDDDDPLDDX/AC3jmTbwx3/ywz/zzw8d/wD/AP8A/wDMocP9PMMoL7//APLCWLQxPs99699PM887DDDV5n95vP8Av/vow/8AGEMMMP8APfJn+3/99/7Dv/8AcIY88ff/AM0H4tP/AM88w23+7/vCE8gFNc9iB89988/DHP79pX9q3/8Arjggw4+gQwwwyw9//wCsf/8AX7z3f/8A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';
+
+// Set all logo images
+function setLogos(){
+  document.querySelectorAll('.nav-logo-img,[id$="-logo-img"],[id^="ftr"],[id^="doc-"]').forEach(img=>{
+    if(img.tagName==='IMG') img.src = LOGO_SRC;
+  });
+}
+setLogos();
+
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+  document.querySelectorAll('.nav-links a').forEach(a=>a.classList.remove('active'));
+  const n=document.getElementById('nav-'+id);
+  if(n) n.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+  initFadeIns();
+}
+
+window.addEventListener('scroll',()=>{
+  document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>20);
+});
+
+function toggleMobile(){document.getElementById('mobileMenu').classList.toggle('open')}
+
+function toggleFaq(el){
+  const item=el.parentElement;
+  const ans=item.querySelector('.faq-a');
+  const isOpen=ans.classList.contains('open');
+  document.querySelectorAll('.faq-a').forEach(a=>a.classList.remove('open'));
+  document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+  if(!isOpen){ans.classList.add('open');item.classList.add('open')}
+}
+
+function initFadeIns(){
+  const obs=new IntersectionObserver((entries)=>{
+    entries.forEach((e,i)=>{
+      if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),i*80);obs.unobserve(e.target)}
+    });
+  },{threshold:.12});
+  document.querySelectorAll('.fade-in:not(.visible)').forEach(el=>obs.observe(el));
+}
+initFadeIns();
+
+function getChecked(cls){
+  return [...document.querySelectorAll('.'+cls+':checked')].map(cb=>cb.value).join(', ');
+}
+
+function showToast(msg,type='success'){
+  const t=document.getElementById('toast');
+  document.getElementById('toast-msg').textContent=msg;
+  t.style.background=type==='error'?'#e53e3e':'var(--gm)';
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),4000);
+}
+
+function submitForm(){
+  const name=document.getElementById('p-name').value.trim();
+  const phone=document.getElementById('p-phone').value.trim();
+  const complaint=document.getElementById('p-complaint').value.trim();
+  const city=document.getElementById('p-city').value.trim();
+  if(!name||!phone||!complaint){showToast('Please fill in required fields (Name, Phone, Chief Complaint)','error');return}
+
+  const submission={
+    id:'HC-'+Date.now(),
+    timestamp:new Date().toISOString(),
+    status:'new',
+    name,phone,city,complaint,
+    age:document.getElementById('p-age').value,
+    gender:document.getElementById('p-gender').value,
+    marital:document.getElementById('p-marital').value,
+    occupation:document.getElementById('p-occ').value,
+    email:document.getElementById('p-email').value,
+    personality:document.getElementById('p-personality').value,
+    intro:document.getElementById('p-intro').value,
+    memory:document.getElementById('p-memory').value,
+    worries:document.getElementById('p-worries').value,
+    emotions:getChecked('p-emotion'),
+    thermal:document.getElementById('p-thermal').value,
+    sweat:document.getElementById('p-sweat').value,
+    thirst:document.getElementById('p-thirst').value,
+    appetite:document.getElementById('p-appetite').value,
+    sleep:document.getElementById('p-sleep').value,
+    energy:document.getElementById('p-energy').value,
+    desires:getChecked('p-desire'),
+    location:document.getElementById('p-location').value,
+    sensation:getChecked('p-sensation'),
+    worse:getChecked('p-worse'),
+    better:getChecked('p-better'),
+    onset:document.getElementById('p-onset').value,
+    duration:document.getElementById('p-duration').value,
+    childhood:document.getElementById('p-childhood').value,
+    rashes:document.getElementById('p-rashes').value,
+    surgery:document.getElementById('p-surgery').value,
+    allopathic:document.getElementById('p-allopathic').value,
+    medicines:document.getElementById('p-medicines').value,
+    homeo:document.getElementById('p-homeo').value,
+    expectation:document.getElementById('p-expectation').value,
+    suffering:document.getElementById('p-suffering').value,
+    source:document.getElementById('p-source').value,
+    doctorNotes:'',prescription:null
+  };
+
+  const existing=JSON.parse(localStorage.getItem('hc_patients')||'[]');
+  existing.unshift(submission);
+  localStorage.setItem('hc_patients',JSON.stringify(existing));
+
+  showToast('✅ Form submitted! Please pay PKR 2,000 via EasyPaisa/JazzCash to: 0300-5857458 and send confirmation on WhatsApp.');
+  document.querySelectorAll('#page-consultation input,#page-consultation select,#page-consultation textarea').forEach(el=>{if(el.type==='checkbox')el.checked=false;else el.value=''});
+}
+
+window.addEventListener('load',()=>{
+  function animateCounter(el,target){
+    let cur=0;const inc=Math.ceil(target/60);
+    const t=setInterval(()=>{cur=Math.min(cur+inc,target);el.textContent=cur.toLocaleString();if(cur>=target)clearInterval(t)},30);
+  }
+  setTimeout(()=>{
+    animateCounter(document.getElementById('stat1'),15);
+    animateCounter(document.getElementById('stat2'),5000);
+    animateCounter(document.getElementById('stat3'),24);
+  },400);
+});
+
+// ─── INTRO VIDEO MODAL ───
+function closeIntro(){
+  const m=document.getElementById('intro-modal');
+  m.style.opacity='0';m.style.transition='opacity .4s ease';
+  setTimeout(()=>m.style.display='none',400);
+  // Pause video
+  const iframe=document.getElementById('intro-iframe');
+  if(iframe) iframe.src='';
+}
+// Show intro after 1.5 seconds
+setTimeout(()=>{
+  if(!sessionStorage.getItem('hc_intro_shown')){
+    document.getElementById('intro-modal').style.display='flex';
+    sessionStorage.setItem('hc_intro_shown','1');
+  } else {
+    document.getElementById('intro-modal').style.display='none';
+  }
+},1200);
+// Close on backdrop click
+document.getElementById('intro-modal').addEventListener('click',function(e){if(e.target===this)closeIntro()});
+
+</script>
+</body>
+</html>
